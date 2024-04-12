@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAqjwAddct0AYW8EJVd5Mk0eWumDnbLfRM",
-  authDomain: "linktree-cce90.firebaseapp.com",
-  projectId: "linktree-cce90",
-  storageBucket: "linktree-cce90.appspot.com",
-  messagingSenderId: "930685222453",
-  appId: "1:930685222453:web:2345184bcf8988f1643b7c"
+  apiKey: import.meta.env.API_KEY,
+  authDomain: import.meta.env.AUTH_DOMAIN,
+  projectId: import.meta.env.PROJECT_ID,
+  storageBucket: import.meta.env.STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.MESSAGING_SENDER_ID,
+  appId: import.meta.env.APP_ID,
 };
 
 export const app = initializeApp(firebaseConfig);

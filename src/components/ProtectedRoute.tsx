@@ -1,5 +1,8 @@
+import { Navigate, Outlet } from "react-router-dom";
+
 function ProtectedRoute() {
-  return <div></div>;
+  const isAuth = true;
+  return !isAuth ? <Navigate to="/login" /> : <Outlet />;
 }
 
 export default ProtectedRoute;

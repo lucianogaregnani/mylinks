@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
@@ -12,13 +11,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<ProtectedRoute />}>
-          <Route element={<AdminDashboard />} />
+          <Route element={<AdminDashboard />} path="/dashboard" />
         </Route>
         <Route element={<RedirectRoute />}>
-          <Route element={<Login />} />
-          <Route element={<Register />} />
+          <Route element={<Login />} path="/login" />
+          <Route element={<Register />} path="/register" />
         </Route>
-        <Route element={<Home />} />
+        <Route element={<Home />} path="/" />
       </Routes>
     </BrowserRouter>
   );
