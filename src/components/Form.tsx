@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GoogleIcon from "./Icons/GoogleIcon";
 import GithubIcon from "./Icons/GithubIcon";
+import ButtonForm from "./Button/ButtonForm";
 
 const text = {
   login: {
@@ -20,11 +21,11 @@ const text = {
 function Form({ type }: { type: "login" | "register" }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("")
+  const [username, setUsername] = useState("");
 
   return (
     <section className="h-screen w-full flex justify-between items-center">
-      <article className="flex flex-col gap-6 w-full items-center">
+      <article className="flex flex-col gap-4 w-full items-center">
         <h4 className="flex flex-col text-center">
           <span className="text-5xl font-bold text-gray-900">
             {text[type].title}
@@ -34,7 +35,7 @@ function Form({ type }: { type: "login" | "register" }) {
         <form className="flex items-center flex-col gap-4 w-full">
           <input
             type="text"
-            placeholder="Email or username"
+            placeholder="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="bg-gray-100 text-md p-2 rounded-md w-[70%]"
@@ -61,23 +62,23 @@ function Form({ type }: { type: "login" | "register" }) {
             className="bg-gray-100 text-md p-2 rounded-md w-[70%]"
           />
 
-          <button className="w-[70%] bg-violet-600 p-2 text-md rounded-full hover:bg-violet-900 transition-all text-white font-semibold">
-            {text[type].primaryButton}
-          </button>
+          <ButtonForm color="primary">{text[type].primaryButton}</ButtonForm>
         </form>
         <span className="text-gray-900">OR</span>
         <div className="w-full flex flex-col gap-3 items-center">
-          <button className="flex justify-center gap-2 items-center w-[70%] text-slate-900 border-[1px] p-2 text-md rounded-full hover:bg-gray-100/70 transition-all font-semibold">
+          <ButtonForm color="white">
             <GoogleIcon />
             <span>{text[type].secondayButton} Google</span>
-          </button>
-          <button className="flex justify-center gap-2 items-center w-[70%] text-slate-900 border-[1px] p-2 text-md rounded-full hover:bg-gray-100/70 transition-all font-semibold">
+          </ButtonForm>
+          <ButtonForm color="white">
             <GithubIcon />
             <span>{text[type].secondayButton} Github</span>
-          </button>
+          </ButtonForm>
         </div>
       </article>
-      <div className="w-3/4 h-full bg-violet-400" />
+      <div
+        className={`w-3/4 h-full bg-violet-400 bg-[url('/src/assets/${type}.jpg')] bg-cover bg-center`}
+      />
     </section>
   );
 }
