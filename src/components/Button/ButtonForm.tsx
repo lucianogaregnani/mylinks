@@ -1,8 +1,7 @@
 type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
-  size?: number;
-  padding?: number;
   color?: "primary" | "secondary" | "white";
+  size?: "small" | "medium" | "large" | "extraLarge";
 };
 
 const buttonColor = {
@@ -23,21 +22,23 @@ const buttonColor = {
   },
 };
 
+const buttonSize = {
+  small: "w-[5rem] h-[2rem]",
+  medium: "w-[6rem] h-[2.5rem]",
+  large: "w-[7rem] h-[3rem]",
+  extraLarge: "w-[70%] h-[2.5rem]",
+};
+
 function ButtonForm({
   children,
-  size,
+  size = "small",
   color = "primary",
-  padding,
   ...props
 }: ButtonProps) {
-  const buttonSize = size ? `w-[${size}rem]` : "w-[70%]";
-  const buttonPadding = padding ? `p-[${padding}rem]` : "p-2";
-
   const { bgColor, bgHover, textColor } = buttonColor[color];
-
   return (
     <button
-      className={`flex justify-center gap-2 items-center ${bgColor} ${bgHover} ${textColor} ${buttonSize} ${buttonPadding} border-[1px] text-md rounded-full transition-all font-semibold`}
+      className={`flex justify-center gap-2 items-center ${buttonSize[size]} ${bgColor} ${bgHover} ${textColor} ${buttonSize} border-[1px] text-md rounded-full transition-all font-semibold`}
       {...props}
     >
       {children}

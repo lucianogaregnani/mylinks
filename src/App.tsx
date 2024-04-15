@@ -5,13 +5,18 @@ import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RedirectRoute from "./components/RedirectRoute";
+import Layout from "./pages/AdminDashboard/components/Layout";
+import Links from "./pages/AdminDashboard/pages/Links/Links";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<ProtectedRoute />}>
-          <Route element={<AdminDashboard />} path="/dashboard" />
+          <Route element={<Layout />}>
+            <Route element={<Links />} path="/admin/links" />
+            <Route element={<Links />} path="/admin/appearance" />
+          </Route>
         </Route>
         <Route element={<RedirectRoute />}>
           <Route element={<Login />} path="/login" />
