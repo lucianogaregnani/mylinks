@@ -1,5 +1,13 @@
+import useAuth from "../../hooks/useAuth";
+
 function Home() {
-  return <div></div>;
+  const { signOutUser } = useAuth();
+
+  return (
+    <div onClick={signOutUser}>
+      <header>Sign out</header>
+    </div>
+  );
 }
 
 export default Home;

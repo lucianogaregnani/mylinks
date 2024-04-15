@@ -1,5 +1,13 @@
+import useAuth from "../../hooks/useAuth";
+
 function AdminDashboard() {
-  return (<div></div>);
+  const { signOutUser } = useAuth();
+
+  return (
+    <div>
+      <button onClick={signOutUser}>Sign out</button>
+    </div>
+  );
 }
 
 export default AdminDashboard;

@@ -1,8 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 function RedirectRoute() {
-  const isAuth = false;
-  return isAuth ? <Navigate to="/dashboard" /> : <Outlet />;
+  const { currentUser } = useAuth();
+
+  return currentUser ? <Navigate to="/dashboard" /> : <Outlet />;
 }
 
 export default RedirectRoute;
