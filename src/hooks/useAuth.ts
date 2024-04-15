@@ -18,7 +18,7 @@ function useAuth() {
     try {
       await signOut(auth);
     } catch (error: any) {
-      setError(error.message);
+      setError("Server error");
     }
   };
 
@@ -26,7 +26,11 @@ function useAuth() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error: any) {
-      setError(error.message);
+      if (error.message === "Firebase: Error (auth/invalid-credential).") {
+        setError("The email already exist");
+      } else {
+        setError("Server error");
+      }
     }
   };
 
@@ -34,7 +38,7 @@ function useAuth() {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (error: any) {
-      setError(error.message);
+      setError("Server error");
     }
   };
 
@@ -46,7 +50,7 @@ function useAuth() {
         await signInWithPopup(auth, githubProvider);
       }
     } catch (error: any) {
-      setError(error.message);
+      setError("Server error");
     }
   };
 
