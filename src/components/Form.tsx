@@ -1,6 +1,6 @@
 import GoogleIcon from "./Icons/GoogleIcon";
 import GithubIcon from "./Icons/GithubIcon";
-import ButtonForm from "./Button/ButtonForm";
+import Button from "./Button/Button";
 import useAuth from "../hooks/useAuth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { UserSchema, UserSchemaType } from "../schemas/UserSchema";
@@ -96,24 +96,28 @@ function Form({ type }: { type: "login" | "register" }) {
             )}
           </div>
 
-          <ButtonForm color="primary">{text[type].primaryButton}</ButtonForm>
+          <Button color="primary" size="extraLarge">
+            {text[type].primaryButton}
+          </Button>
         </form>
         <span className="text-gray-900">OR</span>
         <div className="w-full flex flex-col gap-3 items-center">
-          <ButtonForm
+          <Button
             color="white"
+            size="extraLarge"
             onClick={() => signInWithProvider("google")}
           >
             <GoogleIcon />
             <span>{text[type].secondaryButton} Google</span>
-          </ButtonForm>
-          <ButtonForm
+          </Button>
+          <Button
             color="white"
+            size="extraLarge"
             onClick={() => signInWithProvider("github")}
           >
             <GithubIcon />
             <span>{text[type].secondaryButton} Github</span>
-          </ButtonForm>
+          </Button>
         </div>
         {type === "login" ? (
           <p className="text-slate-500">

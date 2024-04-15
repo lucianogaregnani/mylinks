@@ -29,7 +29,7 @@ const buttonSize = {
   extraLarge: "w-[70%] h-[2.5rem]",
 };
 
-function ButtonForm({
+function Button({
   children,
   size = "small",
   color = "primary",
@@ -46,4 +46,4 @@ function ButtonForm({
   );
 }
 
-export default ButtonForm;
+export default Button;
