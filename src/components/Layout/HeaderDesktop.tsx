@@ -5,7 +5,7 @@ import LogoutButton from "./LogoutButton";
 
 function HeaderDesktop() {
   return (
-    <header className="hidden sticky top-0 bg-white px-4 py-2 shadow-sm md:rounded-full md:flex gap-5 items-center justify-between text-sm font-semibold text-gray-600">
+    <header className="hidden sticky top-2 bg-white px-4 py-2 shadow-sm md:rounded-full md:flex gap-5 items-center justify-between text-sm font-semibold text-gray-600">
       <nav className="flex items-center gap-3">
         <Link to="/">
           <LogoIcon />
