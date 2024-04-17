@@ -9,14 +9,17 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth, githubProvider, googleProvider } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
 
 function useAuth() {
   const [currentUser, setCurrentUser] = useState<User>();
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const signOutUser = async () => {
     try {
       await signOut(auth);
+      navigate("/login");
     } catch (error: any) {
       setError("Server error");
     }
@@ -25,6 +28,7 @@ function useAuth() {
   const login = async (email: string, password: string) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      navigate("/admin/links");
     } catch (error: any) {
       if (error.message === "Firebase: Error (auth/invalid-credential).") {
         setError("The email already exist");
@@ -37,6 +41,7 @@ function useAuth() {
   const signUp = async (email: string, password: string) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      navigate("/admin/links");
     } catch (error: any) {
       setError("Server error");
     }
@@ -49,6 +54,7 @@ function useAuth() {
       } else {
         await signInWithPopup(auth, githubProvider);
       }
+      navigate("/admin/links");
     } catch (error: any) {
       setError("Server error");
     }
