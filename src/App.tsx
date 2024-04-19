@@ -5,22 +5,27 @@ import Home from "./pages/Home/Home";
 import Layout from "./components/Layout/Layout";
 import Links from "./pages/AdminDashboard/pages/Links/Links";
 import Appearance from "./pages/AdminDashboard/pages/Appearance/Appearance";
+import { Provider } from "react-redux";
+import { store } from "./pages/AdminDashboard/store";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route element={<Links />} path="/admin/links" />
-          <Route element={<Appearance />} path="/admin/appearance" />
-        </Route>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route>
+            <Route element={<Layout />}>
+              <Route element={<Links />} path="/admin/links" />
+              <Route element={<Appearance />} path="/admin/appearance" />
+            </Route>
+          </Route>
+          <Route element={<Login />} path="/login" />
+          <Route element={<Register />} path="/register" />
 
-        <Route element={<Login />} path="/login" />
-        <Route element={<Register />} path="/register" />
-
-        <Route element={<Home />} path="/" />
-      </Routes>
-    </BrowserRouter>
+          <Route element={<Home />} path="/" />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

@@ -1,34 +1,9 @@
-import { useState } from "react";
 import Link from "./Link";
-import {
-  DragDropContext,
-  DropResult,
-  Droppable,
-} from "react-beautiful-dnd";
-
-const myLinks = [
-  {
-    id: "1",
-    title: "www.linkedin.com",
-    link: "https://www.linkedin.com/in/luciano-garegnani/",
-    isActive: true,
-  },
-  {
-    id: "2",
-    title: "www.twitter.com",
-    link: "https://twitter.com/home",
-    isActive: true,
-  },
-  {
-    id: "3",
-    title: "www.facebook.com",
-    link: "www.facebook.com",
-    isActive: true,
-  },
-];
+import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+import useLinks from "../../../hooks/useLinks";
 
 function ListOfLinks() {
-  const [links, setLinks] = useState(myLinks);
+  const { links, setLinks } = useLinks();
 
   const handleDragEnd = (results: DropResult) => {
     const { destination, source } = results;
