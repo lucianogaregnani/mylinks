@@ -5,6 +5,7 @@ type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   color?: "primary" | "secondary" | "white" | "transparent";
   size?: Size | "full";
   textSize?: Size;
+  disabled?: boolean;
 };
 
 const buttonColor = {
@@ -50,13 +51,21 @@ function Button({
   size = "small",
   color = "primary",
   textSize = "small",
+  disabled = false,
   ...props
 }: ButtonProps) {
   const { bgColor, bgHover, textColor } = buttonColor[color];
   return (
     <button
-      className={`flex justify-center gap-2 items-center ${fontSize[textSize]} ${buttonSize[size]} ${bgColor} ${bgHover} ${textColor} ${buttonSize} border-[1px] rounded-full transition-all font-semibold`}
+      className={`${
+        disabled
+          ? "bg-slate-300 text-gray-100"
+          : `${bgColor} ${bgHover} ${textColor}`
+      } flex justify-center gap-2 items-center ${fontSize[textSize]} ${
+        buttonSize[size]
+      }  ${buttonSize} border-[1px] rounded-full transition-all font-semibold`}
       {...props}
+      disabled={disabled}
     >
       {children}
     </button>

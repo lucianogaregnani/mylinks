@@ -12,7 +12,7 @@ function ShareMyLink() {
             <h3>
               <span className="font-semibold">Your MyLink is live:</span>{" "}
               <Link className="underline" to="https://linktr.ee/whitertroll">
-                linktr.ee/whitertroll
+                mylinks.com/garegnani
               </Link>
             </h3>
             <p>Share your MyLink to your socials</p>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import Link from "./Link";
 import {
   DragDropContext,
-  Draggable,
   DropResult,
   Droppable,
 } from "react-beautiful-dnd";
