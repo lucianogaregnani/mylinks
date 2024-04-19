@@ -7,6 +7,7 @@ interface AddModalProps {
   children: React.ReactNode;
   isOpen: boolean;
   closeModal: () => void;
+  onAdd: (url: string) => void;
 }
 
 function AddModal({
@@ -14,6 +15,7 @@ function AddModal({
   children,
   isOpen,
   closeModal,
+  onAdd,
 }: AddModalProps) {
   const [data, setData] = useState("");
 
@@ -36,7 +38,14 @@ function AddModal({
           value={data}
           onChange={(e) => setData(e.target.value)}
         />
-        <Button disabled={!data}>Add</Button>
+        <Button
+          disabled={!data}
+          onClick={() => {
+            onAdd(data);
+          }}
+        >
+          Add
+        </Button>
       </div>
     </section>
   );

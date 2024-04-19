@@ -5,13 +5,19 @@ import "tippy.js/animations/perspective.css";
 type ButtonIconProps = React.HTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
   content: string;
+  placement?: "right" | "bottom" | "top" | "left";
 };
 
-function ButtonIcon({ children, content, ...args }: ButtonIconProps) {
+function ButtonIcon({
+  children,
+  content,
+  placement = "bottom",
+  ...args
+}: ButtonIconProps) {
   return (
     <Tippy
       content={<div className="text-[0.8rem] font-semibold">{content}</div>}
-      placement="bottom"
+      placement={placement}
       animation="fade"
     >
       <button

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import ButtonIcon from "./ButtonIcon";
 import ImageIcon from "./Icons/ImageIcon";
-import PencilIcon from "./Icons/PencilIcon";
 import TrashIcon from "./Icons/TrashIcon";
 import MoveIcon from "./Icons/MoveIcon";
 import { Draggable } from "react-beautiful-dnd";
+import useLinks from "../../../hooks/useLinks";
+import EditText from "./EditText";
 
 interface LinkProps {
   id: string;
@@ -16,6 +17,7 @@ interface LinkProps {
 
 function Link({ id, title, link, isActive, index }: LinkProps) {
   const [active, setIsActive] = useState(isActive);
+  const { deleteLink } = useLinks();
 
   return (
     <Draggable draggableId={id} index={index}>
@@ -23,7 +25,6 @@ function Link({ id, title, link, isActive, index }: LinkProps) {
         <div
           {...provided.draggableProps}
           ref={provided.innerRef}
-          key={id}
           className="bg-white rounded-2xl flex items-center gap-4 w-full mb-3"
         >
           <div
@@ -35,28 +36,18 @@ function Link({ id, title, link, isActive, index }: LinkProps) {
           <div className="flex justify-between w-full px-2">
             <div className="flex gap-5 items-center">
               <header className="flex flex-col gap-2">
-                <div className="flex gap-2 sm:w-[12rem] md:w-full">
-                  <p className=" whitespace-nowrap overflow-hidden text-ellipsis">
-                    {title}
-                  </p>
-                  <button>
-                    <PencilIcon />
-                  </button>
-                </div>
-                <div className="flex gap-2 w-[12rem] md:w-full">
-                  <p className=" whitespace-nowrap overflow-hidden text-ellipsis">
-                    {link}
-                  </p>
-                  <button>
-                    <PencilIcon />
-                  </button>
-                </div>
+                <EditText
+                  type="title"
+                  title={title}
+                  placeholder="Enter a title"
+                />
+                <EditText type="link" title={link} placeholder="Enter a link" />
                 <footer className="flex gap-2">
                   <ButtonIcon content="Thumbnail">
                     <ImageIcon />
                   </ButtonIcon>
 
-                  <ButtonIcon content="Delete">
+                  <ButtonIcon content="Delete" onClick={() => deleteLink(id)}>
                     <TrashIcon />
                   </ButtonIcon>
                 </footer>

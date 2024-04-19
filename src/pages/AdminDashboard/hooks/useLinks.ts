@@ -1,5 +1,6 @@
-import { addDoc, doc, getDocs, updateDoc } from "firebase/firestore";
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { addDoc, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { db, linksRef } from "../../../config/firebase";
 import { useAppDispatch } from "./useAppDispach";
@@ -14,6 +15,10 @@ function useLinks() {
   const links = useAppSelector((state) => state.links);
 
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    getLinks().then((res) => setLinks(res || []));
+  }, []);
 
   const setLinks = (newLinks: Link[]) => {
     dispatch(changeLinks(newLinks));
@@ -45,9 +50,9 @@ function useLinks() {
 
   const updateThumbnail = async (newThumbnail: string, id: string) => {
     try {
-      const movieDoc = doc(db, "link", id);
+      const linkDoc = doc(db, "link", id);
 
-      await updateDoc(movieDoc, {
+      await updateDoc(linkDoc, {
         thumbnailUrl: newThumbnail,
       });
 
@@ -65,12 +70,6 @@ function useLinks() {
 
   const updateTitle = async (newTitle: string, id: string) => {
     try {
-      const movieDoc = doc(db, "link", id);
-
-      await updateDoc(movieDoc, {
-        title: newTitle,
-      });
-
       const newLinks = [...links];
 
       newLinks.forEach((link) => {
@@ -78,6 +77,25 @@ function useLinks() {
       });
 
       setLinks(newLinks);
+
+      const linkDoc = doc(db, "link", id);
+
+      await updateDoc(linkDoc, {
+        title: newTitle,
+      });
+    } catch (_error) {
+      setError("Error");
+    }
+  };
+
+  const deleteLink = async (id: string) => {
+    try {
+      const linkDoc = doc(db, "link", id);
+      const newLinks = [...links];
+
+      setLinks(newLinks.filter((link) => link.id !== id));
+
+      await deleteDoc(linkDoc);
     } catch (_error) {
       setError("Error");
     }
@@ -85,12 +103,6 @@ function useLinks() {
 
   const updateLink = async (newLink: string, id: string) => {
     try {
-      const movieDoc = doc(db, "link", id);
-
-      await updateDoc(movieDoc, {
-        link: newLink,
-      });
-
       const newLinks = [...links];
 
       newLinks.forEach((link) => {
@@ -98,6 +110,12 @@ function useLinks() {
       });
 
       setLinks(newLinks);
+
+      const linkDoc = doc(db, "link", id);
+
+      await updateDoc(linkDoc, {
+        link: newLink,
+      });
     } catch (_error) {
       setError("Error");
     }
@@ -107,10 +125,18 @@ function useLinks() {
     try {
       const data = await getDocs(linksRef);
 
-      const filteredLinks = data.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      const filteredLinks: Link[] = data.docs.map((doc) => {
+        const { title, link, userId, thumbnailUrl } = doc.data() as Link;
+
+        return {
+          id: doc.id,
+          title: title,
+          link: link,
+          userId: userId,
+          thumbnailUrl: thumbnailUrl,
+          isActive: true,
+        };
+      });
 
       return filteredLinks;
     } catch (error) {
@@ -126,6 +152,7 @@ function useLinks() {
     updateTitle,
     updateLink,
     getLinks,
+    deleteLink,
     error,
   };
 }

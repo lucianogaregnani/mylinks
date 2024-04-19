@@ -5,8 +5,18 @@ import HeaderIcon from "./Icons/HeaderIcon";
 
 function AddHeaderButton() {
   const { isOpen, closeModal, openModal } = useAddModal();
+
+  const handleAdd = (newUrl: string) => {
+    console.log(newUrl);
+  };
+
   return (
-    <AddModal isOpen={isOpen} closeModal={closeModal} placeholder="Title">
+    <AddModal
+      isOpen={isOpen}
+      closeModal={closeModal}
+      placeholder="Title"
+      onAdd={handleAdd}
+    >
       <Button
         size="medium"
         color="transparent"
