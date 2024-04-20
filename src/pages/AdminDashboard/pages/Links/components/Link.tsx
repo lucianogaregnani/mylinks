@@ -1,6 +1,5 @@
 import { useState } from "react";
 import ButtonIcon from "./ButtonIcon";
-import ImageIcon from "./Icons/ImageIcon";
 import TrashIcon from "./Icons/TrashIcon";
 import MoveIcon from "./Icons/MoveIcon";
 import { Draggable } from "react-beautiful-dnd";
@@ -8,6 +7,7 @@ import useLinks from "../../../hooks/useLinks";
 import EditText from "./EditText";
 import validateTitle from "../utils/validateTitle";
 import validateUrl from "../utils/validateUrl";
+import EditThumbnail from "./EditThumbnail";
 
 interface LinkProps {
   id: string;
@@ -51,10 +51,7 @@ function Link({ id, title, link, isActive, index }: LinkProps) {
                   placeholder="Enter a link"
                 />
                 <nav className="flex gap-2">
-                  <ButtonIcon content="Thumbnail">
-                    <ImageIcon />
-                  </ButtonIcon>
-
+                  <EditThumbnail />
                   <ButtonIcon content="Delete" onClick={() => deleteLink(id)}>
                     <TrashIcon />
                   </ButtonIcon>

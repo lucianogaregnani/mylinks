@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../../../../../components/Button/Button";
-import DeleteIcon from "./Icons/DeleteIcon";
+import CloseButton from "./CloseButton";
 
 interface AddModalProps {
   placeholder?: string;
@@ -23,12 +23,7 @@ function AddModal({
     <>{children}</>
   ) : (
     <section className="flex flex-col w-full bg-white p-4 rounded-2xl">
-      <button
-        onClick={closeModal}
-        className="hover:bg-red-400 bg-gray-100 hover:text-white transition-all p-2 rounded-full self-end"
-      >
-        <DeleteIcon />
-      </button>
+      <CloseButton onClick={closeModal} />
       <h4 className="mb-3 text-2xl font-bold">Enter {placeholder}</h4>
       <div className="flex gap-3 w-full">
         <input

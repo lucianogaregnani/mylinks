@@ -36,7 +36,7 @@ const buttonSize = {
   medium: "w-[8rem] h-[2.5rem] px-2",
   large: "w-[9rem] h-[3rem]",
   extraLarge: "w-[70%] p-3",
-  full: "w-full p-3",
+  full: "w-full p-3 text-2xl",
 };
 
 const fontSize = {
