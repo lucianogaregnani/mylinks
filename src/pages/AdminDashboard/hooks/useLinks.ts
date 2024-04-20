@@ -52,32 +52,42 @@ function useLinks() {
     try {
       const linkDoc = doc(db, "link", id);
 
-      await updateDoc(linkDoc, {
-        thumbnailUrl: newThumbnail,
-      });
-
       const newLinks = [...links];
 
       newLinks.forEach((link) => {
-        if (link.id === id) link.thumbnailUrl = newThumbnail;
+        if (link.id === id) {
+          return {
+            ...link,
+            thumbnailUrl: newThumbnail,
+          };
+        }
       });
 
       setLinks(newLinks);
+
+      await updateDoc(linkDoc, {
+        thumbnailUrl: newThumbnail,
+      });
     } catch (_error) {
       setError("Error");
     }
   };
 
   const updateTitle = async (newTitle: string, id: string) => {
+    const newLinks = [...links];
+
+    newLinks.forEach((link) => {
+      if (link.id === id) {
+        return {
+          ...link,
+          title: newTitle,
+        };
+      }
+    });
+
+    setLinks(newLinks);
+
     try {
-      const newLinks = [...links];
-
-      newLinks.forEach((link) => {
-        if (link.id === id) link.title = newTitle;
-      });
-
-      setLinks(newLinks);
-
       const linkDoc = doc(db, "link", id);
 
       await updateDoc(linkDoc, {
@@ -106,7 +116,12 @@ function useLinks() {
       const newLinks = [...links];
 
       newLinks.forEach((link) => {
-        if (link.id === id) link.link = newLink;
+        if (link.id === id) {
+          return {
+            ...link,
+            link: newLink,
+          };
+        }
       });
 
       setLinks(newLinks);

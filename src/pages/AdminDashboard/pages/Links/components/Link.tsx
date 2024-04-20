@@ -6,6 +6,8 @@ import MoveIcon from "./Icons/MoveIcon";
 import { Draggable } from "react-beautiful-dnd";
 import useLinks from "../../../hooks/useLinks";
 import EditText from "./EditText";
+import validateTitle from "../utils/validateTitle";
+import validateUrl from "../utils/validateUrl";
 
 interface LinkProps {
   id: string;
@@ -17,7 +19,7 @@ interface LinkProps {
 
 function Link({ id, title, link, isActive, index }: LinkProps) {
   const [active, setIsActive] = useState(isActive);
-  const { deleteLink } = useLinks();
+  const { deleteLink, updateLink, updateTitle } = useLinks();
 
   return (
     <Draggable draggableId={id} index={index}>
@@ -37,12 +39,18 @@ function Link({ id, title, link, isActive, index }: LinkProps) {
             <div className="flex gap-5 items-center">
               <header className="flex flex-col gap-2">
                 <EditText
-                  type="title"
+                  validation={validateTitle}
+                  onClick={(newTitle: string) => updateTitle(newTitle, id)}
                   title={title}
                   placeholder="Enter a title"
                 />
-                <EditText type="link" title={link} placeholder="Enter a link" />
-                <footer className="flex gap-2">
+                <EditText
+                  validation={validateUrl}
+                  onClick={(newLink: string) => updateLink(newLink, id)}
+                  title={link}
+                  placeholder="Enter a link"
+                />
+                <nav className="flex gap-2">
                   <ButtonIcon content="Thumbnail">
                     <ImageIcon />
                   </ButtonIcon>
@@ -50,7 +58,7 @@ function Link({ id, title, link, isActive, index }: LinkProps) {
                   <ButtonIcon content="Delete" onClick={() => deleteLink(id)}>
                     <TrashIcon />
                   </ButtonIcon>
-                </footer>
+                </nav>
               </header>
             </div>
             <label className="inline-flex items-center me-5 cursor-pointer">

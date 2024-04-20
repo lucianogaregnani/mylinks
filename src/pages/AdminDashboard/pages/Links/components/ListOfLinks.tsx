@@ -34,7 +34,7 @@ function ListOfLinks() {
                 id={id}
                 title={title}
                 link={link}
-                isActive={isActive}
+                isActive={isActive || false}
                 key={id}
               />
             ))}
