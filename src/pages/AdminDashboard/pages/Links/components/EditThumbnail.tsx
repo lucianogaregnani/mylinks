@@ -20,13 +20,7 @@ function EditThumbnail() {
           >
             <div className="flex items-center w-full justify-between">
               <h4 className="text-xl font-bold">Add Thumbnail</h4>
-              <CloseButton
-                onClick={() => {
-                  closeModal();
-                  document.body.classList.remove("overflow-hidden");
-                }}
-                type="justify"
-              />
+              <CloseButton onClick={closeModal} type="justify" />
             </div>
 
             <article
@@ -58,13 +52,7 @@ function EditThumbnail() {
           </form>
         </section>
       )}
-      <ButtonIcon
-        content="Thumbnail"
-        onClick={() => {
-          openModal();
-          document.body.classList.add("overflow-hidden");
-        }}
-      >
+      <ButtonIcon content="Thumbnail" onClick={openModal}>
         <ImageIcon />
       </ButtonIcon>
     </>
