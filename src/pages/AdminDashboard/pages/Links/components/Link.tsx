@@ -51,7 +51,7 @@ function Link({ id, title, link, isActive, index }: LinkProps) {
                   placeholder="Enter a link"
                 />
                 <nav className="flex gap-2">
-                  <EditThumbnail />
+                  <EditThumbnail linkId={id} />
                   <ButtonIcon content="Delete" onClick={() => deleteLink(id)}>
                     <TrashIcon />
                   </ButtonIcon>
