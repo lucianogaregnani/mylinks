@@ -27,3 +27,4 @@ export const db = getFirestore(app);
 export const storage = getStorage(app);
 
 export const linksRef = collection(db, "link");
+export const userConfigRef = collection(db, "setting");

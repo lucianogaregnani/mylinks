@@ -1,8 +1,10 @@
-import { useState } from "react";
 import AddHeaderButton from "./Buttons/AddHeaderButton";
+import useSettings from "../../../hooks/useSettings";
+import useAuth from "../../../../../hooks/useAuth";
 
 function Header() {
-  const [title, setTitle] = useState("");
+  const { currentUser } = useAuth();
+  const { title, setTitle } = useSettings({ userId: currentUser?.uid });
 
   return title ? (
     <div

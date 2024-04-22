@@ -54,7 +54,6 @@ function useAuth() {
       } else {
         await signInWithPopup(auth, githubProvider);
       }
-      navigate("/admin/links");
     } catch (error: any) {
       setError("Server error");
     }

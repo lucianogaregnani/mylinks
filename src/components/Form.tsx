@@ -32,6 +32,7 @@ const text = {
 
 function Form({ type }: { type: "login" | "register" }) {
   const { login, signUp, signInWithProvider, error } = useAuth();
+
   const {
     register,
     handleSubmit,
