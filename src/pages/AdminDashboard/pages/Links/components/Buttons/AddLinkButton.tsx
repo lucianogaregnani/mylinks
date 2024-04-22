@@ -1,8 +1,8 @@
-import Button from "../../../../../components/Button/Button";
+import Button from "../../../../../../components/Button/Button";
 import AddModal from "./AddModal";
-import PlusIcon from "./Icons/PlusIcon";
-import useAddModal from "../hooks/useAddModal";
-import useLinks from "../../../hooks/useLinks";
+import PlusIcon from "../Icons/PlusIcon";
+import useAddModal from "../../hooks/useAddModal";
+import useLinks from "../../../../hooks/useLinks";
 
 function AddLinkButton() {
   const { isOpen, closeModal, openModal } = useAddModal();

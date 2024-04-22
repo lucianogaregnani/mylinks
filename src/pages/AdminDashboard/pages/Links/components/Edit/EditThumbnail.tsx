@@ -1,18 +1,18 @@
-import ButtonIcon from "./ButtonIcon";
-import ImageIcon from "./Icons/ImageIcon";
-import useAddModal from "../hooks/useAddModal";
-import useUploadImage from "../../../hooks/useUploadImage";
-import Button from "../../../../../components/Button/Button";
-import CloseButton from "./CloseButton";
-import FileIcon from "./Icons/FileIcon";
-import { storage } from "../../../../../config/firebase";
+import ButtonIcon from "../Buttons/ButtonIcon";
+import ImageIcon from "../Icons/ImageIcon";
+import useAddModal from "../../hooks/useAddModal";
+import useUploadImage from "../../../../hooks/useUploadImage";
+import Button from "../../../../../../components/Button/Button";
+import CloseButton from "../Buttons/CloseButton";
+import FileIcon from "../Icons/FileIcon";
+import { storage } from "../../../../../../config/firebase";
 import {
   deleteObject,
   getDownloadURL,
   ref,
   uploadBytes,
 } from "firebase/storage";
-import useLinks from "../../../hooks/useLinks";
+import useLinks from "../../../../hooks/useLinks";
 import { useState } from "react";
 
 function EditThumbnail({
@@ -58,10 +58,14 @@ function EditThumbnail({
   return (
     <>
       {isOpen && (
-        <section className="flex items-center justify-center fixed w-full h-screen top-0 left-0 z-30  bg-black/40">
+        <section className="flex items-center justify-center fixed w-full h-screen top-0 left-0 z-20 bg-black/40">
+          <div
+            onClick={closeModal}
+            className="h-screen w-full fixed top-0 left-0 z-30"
+          />
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="px-9 py-4 flex gap-2 flex-col items-center justify-center w-full h-full md:h-auto md:w-[30rem] bg-white md:rounded-3xl"
+            className="z-40 px-9 py-4 flex gap-2 flex-col items-center justify-center w-full h-full md:h-auto md:w-[30rem] bg-white md:rounded-3xl"
           >
             <div className="flex items-center w-full justify-between">
               <h4 className="text-xl font-bold">Add Thumbnail</h4>

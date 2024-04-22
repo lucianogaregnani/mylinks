@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import PencilIcon from "./Icons/PencilIcon";
-import ButtonIcon from "./ButtonIcon";
+import PencilIcon from "../Icons/PencilIcon";
+import ButtonIcon from "../Buttons/ButtonIcon";
 
 function EditText({
   validation,

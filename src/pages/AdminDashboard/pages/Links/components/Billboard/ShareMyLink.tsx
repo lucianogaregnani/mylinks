@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import AlertIcon from "./Icons/AlertIcon";
-import Button from "../../../../../components/Button/Button";
+import AlertIcon from "../Icons/AlertIcon";
+import Button from "../../../../../../components/Button/Button";
 
 function ShareMyLink() {
   return (

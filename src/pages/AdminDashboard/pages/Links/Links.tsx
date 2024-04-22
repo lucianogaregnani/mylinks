@@ -1,7 +1,7 @@
-import ShareMyLink from "./components/ShareMyLink";
+import ShareMyLink from "./components/Billboard/ShareMyLink";
 import ListOfLinks from "./components/ListOfLinks";
-import AddLinkButton from "./components/AddLinkButton";
-import AddHeaderButton from "./components/AddHeaderButton";
+import AddLinkButton from "./components/Buttons/AddLinkButton";
+import AddHeaderButton from "./components/Buttons/AddHeaderButton";
 
 function Links() {
   return (

@@ -1,7 +1,7 @@
-import Button from "../../../../../components/Button/Button";
-import useAddModal from "../hooks/useAddModal";
+import Button from "../../../../../../components/Button/Button";
+import useAddModal from "../../hooks/useAddModal";
 import AddModal from "./AddModal";
-import HeaderIcon from "./Icons/HeaderIcon";
+import HeaderIcon from "../Icons/HeaderIcon";
 
 function AddHeaderButton() {
   const { isOpen, closeModal, openModal } = useAddModal();

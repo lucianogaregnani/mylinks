@@ -1,4 +1,4 @@
-import DeleteIcon from "./Icons/DeleteIcon";
+import DeleteIcon from "../Icons/DeleteIcon";
 
 function CloseButton({
   onClick,

@@ -1,13 +1,13 @@
 import { useState } from "react";
-import ButtonIcon from "./ButtonIcon";
+import ButtonIcon from "./Buttons/ButtonIcon";
 import TrashIcon from "./Icons/TrashIcon";
 import MoveIcon from "./Icons/MoveIcon";
 import { Draggable } from "react-beautiful-dnd";
 import useLinks from "../../../hooks/useLinks";
-import EditText from "./EditText";
+import EditText from "./Edit/EditText";
 import validateTitle from "../utils/validateTitle";
 import validateUrl from "../utils/validateUrl";
-import EditThumbnail from "./EditThumbnail";
+import EditThumbnail from "./Edit/EditThumbnail";
 import { Link } from "../../../../../types/Link.type";
 
 function LinkCard({
