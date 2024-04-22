@@ -2,13 +2,14 @@ import Button from "../../../../../../components/Button/Button";
 import useAddModal from "../../hooks/useAddModal";
 import AddModal from "./AddModal";
 import HeaderIcon from "../Icons/HeaderIcon";
+import validateTitle from "../../utils/validateTitle";
 
-function AddHeaderButton() {
+function AddHeaderButton({
+  handleAdd,
+}: {
+  handleAdd: (newTitle: string) => void;
+}) {
   const { isOpen, closeModal, openModal } = useAddModal();
-
-  const handleAdd = (newUrl: string) => {
-    console.log(newUrl);
-  };
 
   return (
     <AddModal
@@ -16,6 +17,7 @@ function AddHeaderButton() {
       closeModal={closeModal}
       placeholder="Title"
       onAdd={handleAdd}
+      validate={validateTitle}
     >
       <Button
         size="medium"

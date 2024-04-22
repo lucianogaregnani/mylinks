@@ -91,9 +91,7 @@ function EditThumbnail({
               ) : (
                 <div className="flex flex-col items-center justify-center h-full w-full">
                   <FileIcon />
-                  <p className="text-center">
-                    select file to upload, or drag-and-drop file
-                  </p>
+                  <p className="text-center">select file to upload</p>
                 </div>
               )}
             </article>

@@ -3,6 +3,7 @@ import AddModal from "./AddModal";
 import PlusIcon from "../Icons/PlusIcon";
 import useAddModal from "../../hooks/useAddModal";
 import useLinks from "../../../../hooks/useLinks";
+import validateUrl from "../../utils/validateUrl";
 
 function AddLinkButton() {
   const { isOpen, closeModal, openModal } = useAddModal();
@@ -14,6 +15,7 @@ function AddLinkButton() {
       isOpen={isOpen}
       closeModal={closeModal}
       onAdd={createLink}
+      validate={validateUrl}
     >
       <Button size="full" onClick={openModal}>
         <PlusIcon />

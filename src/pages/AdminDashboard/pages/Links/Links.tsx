@@ -1,7 +1,7 @@
 import ShareMyLink from "./components/Billboard/ShareMyLink";
 import ListOfLinks from "./components/ListOfLinks";
 import AddLinkButton from "./components/Buttons/AddLinkButton";
-import AddHeaderButton from "./components/Buttons/AddHeaderButton";
+import Header from "./components/Header";
 
 function Links() {
   return (
@@ -9,7 +9,7 @@ function Links() {
       <ShareMyLink />
       <div className="p-2 flex gap-4 flex-col">
         <AddLinkButton />
-        <AddHeaderButton />
+        <Header />
         <ListOfLinks />
       </div>
     </section>
