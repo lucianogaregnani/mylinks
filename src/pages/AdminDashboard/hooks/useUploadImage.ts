@@ -19,7 +19,12 @@ function useUploadImage() {
     if (e.target.files) setThumbnail(e.target.files[0]);
   };
 
-  return { thumbnail, preview, handleChange }
+  const clear = () => {
+    setPreview("");
+    setThumbnail(undefined);
+  };
+
+  return { thumbnail, preview, handleChange, clear };
 }
 
 export default useUploadImage;

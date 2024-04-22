@@ -8,16 +8,16 @@ import EditText from "./EditText";
 import validateTitle from "../utils/validateTitle";
 import validateUrl from "../utils/validateUrl";
 import EditThumbnail from "./EditThumbnail";
+import { Link } from "../../../../../types/Link.type";
 
-interface LinkProps {
-  id: string;
-  title: string;
-  link: string;
-  isActive: boolean;
-  index: number;
-}
-
-function Link({ id, title, link, isActive, index }: LinkProps) {
+function LinkCard({
+  id,
+  title,
+  link,
+  isActive,
+  thumbnailUrl,
+  index,
+}: Link & { index: number }) {
   const [active, setIsActive] = useState(isActive);
   const { deleteLink, updateLink, updateTitle } = useLinks();
 
@@ -51,7 +51,7 @@ function Link({ id, title, link, isActive, index }: LinkProps) {
                   placeholder="Enter a link"
                 />
                 <nav className="flex gap-2">
-                  <EditThumbnail linkId={id} />
+                  <EditThumbnail thumbnailUrl={thumbnailUrl} linkId={id} />
                   <ButtonIcon content="Delete" onClick={() => deleteLink(id)}>
                     <TrashIcon />
                   </ButtonIcon>
@@ -75,4 +75,4 @@ function Link({ id, title, link, isActive, index }: LinkProps) {
   );
 }
 
-export default Link;
+export default LinkCard;

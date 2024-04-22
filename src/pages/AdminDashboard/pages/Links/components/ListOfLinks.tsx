@@ -1,4 +1,4 @@
-import Link from "./Link";
+import LinkCard from "./LinkCard";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import useLinks from "../../../hooks/useLinks";
 
@@ -28,16 +28,20 @@ function ListOfLinks() {
             ref={provided.innerRef}
             className="w-full"
           >
-            {links.map(({ id, title, link, isActive }, index) => (
-              <Link
-                index={index}
-                id={id}
-                title={title}
-                link={link}
-                isActive={isActive || false}
-                key={id}
-              />
-            ))}
+            {links.map(
+              ({ id, title, link, isActive, thumbnailUrl, userId }, index) => (
+                <LinkCard
+                  index={index}
+                  id={id}
+                  thumbnailUrl={thumbnailUrl}
+                  userId={userId}
+                  title={title}
+                  link={link}
+                  isActive={isActive || false}
+                  key={id}
+                />
+              )
+            )}
             {provided.placeholder}
           </article>
         )}
