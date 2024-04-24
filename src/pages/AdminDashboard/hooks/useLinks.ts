@@ -30,6 +30,7 @@ function useLinks() {
       link,
       userId: currentUser?.uid,
       thumbnailUrl: "",
+      isActive: true,
     };
 
     try {
@@ -38,11 +39,37 @@ function useLinks() {
       setLinks([
         {
           id: newLink.id,
-          isActive: true,
           ...data,
         },
         ...links,
       ]);
+    } catch (_error) {
+      setError("Error");
+    }
+  };
+
+  const updateIsActive = async (newActive: boolean, id: string) => {
+    try {
+      const linkDoc = doc(db, "link", id);
+
+      const newLinks = [...links];
+
+      console.log({ newActive });
+
+      newLinks.forEach((link) => {
+        if (link.id === id) {
+          return {
+            ...link,
+            isActive: newActive,
+          };
+        }
+      });
+
+      setLinks(newLinks);
+
+      await updateDoc(linkDoc, {
+        isActive: newActive,
+      });
     } catch (_error) {
       setError("Error");
     }
@@ -163,6 +190,7 @@ function useLinks() {
     links,
     setLinks,
     createLink,
+    updateIsActive,
     updateThumbnail,
     updateTitle,
     updateLink,

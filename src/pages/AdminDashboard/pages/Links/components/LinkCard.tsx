@@ -18,8 +18,8 @@ function LinkCard({
   thumbnailUrl,
   index,
 }: Link & { index: number }) {
-  const [active, setIsActive] = useState(isActive);
-  const { deleteLink, updateLink, updateTitle } = useLinks();
+  const [active, setActive] = useState(isActive);
+  const { deleteLink, updateLink, updateTitle, updateIsActive } = useLinks();
 
   return (
     <Draggable draggableId={id} index={index}>
@@ -64,7 +64,10 @@ function LinkCard({
                 value=""
                 className="sr-only peer"
                 checked={active}
-                onChange={() => setIsActive(!active)}
+                onChange={() => {
+                  setActive(!active);
+                  updateIsActive(!active, id);
+                }}
               />
               <div className="relative w-9 h-5 bg-red-600 rounded-full focus:outline-none peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-[1rem] after:w-[1rem] after:transition-all peer-checked:bg-green-600" />
             </label>

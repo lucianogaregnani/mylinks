@@ -37,7 +37,7 @@ function ListOfLinks() {
                   userId={userId}
                   title={title}
                   link={link}
-                  isActive={isActive || false}
+                  isActive={isActive}
                   key={id}
                 />
               )
