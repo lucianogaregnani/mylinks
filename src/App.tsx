@@ -8,6 +8,7 @@ import Appearance from "./pages/AdminDashboard/pages/Appearance/Appearance";
 import { Provider } from "react-redux";
 import { store } from "./pages/AdminDashboard/store";
 import Profile from "./pages/AdminDashboard/pages/Profile/Profile";
+import MyLinks from "./pages/MyLinks/MyLinks";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route element={<Profile />} path="/admin/profile" />
             </Route>
           </Route>
+          <Route element={<MyLinks />} path=":username" />
           <Route element={<Login />} path="/login" />
           <Route element={<Register />} path="/register" />
 

@@ -1,6 +1,6 @@
 import LinkCard from "./LinkCard";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
-import useLinks from "../../../hooks/useLinks";
+import useLinks from "../../../../../hooks/useLinks";
 
 function ListOfLinks() {
   const { links, setLinks } = useLinks();

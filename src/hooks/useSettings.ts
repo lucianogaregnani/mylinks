@@ -5,9 +5,9 @@ import {
   changeTitle,
   changeType,
   changeUsername,
-} from "../store/settings";
-import { useAppDispatch } from "./useAppDispach";
-import { useAppSelector } from "./useAppSelector";
+} from "../pages/AdminDashboard/store/settings";
+import { useAppDispatch } from "../pages/AdminDashboard/hooks/useAppDispach";
+import { useAppSelector } from "../pages/AdminDashboard/hooks/useAppSelector";
 import {
   addDoc,
   collection,
@@ -17,8 +17,8 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { db, userConfigRef } from "../../../config/firebase";
-import { Setting } from "../../../types/Settings.type";
+import { db, userConfigRef } from "../config/firebase";
+import { Setting } from "../types/Settings.type";
 
 function useSettings({ userId }: { userId: string | undefined }) {
   const dispatch = useAppDispatch();

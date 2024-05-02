@@ -3,7 +3,7 @@ import ButtonIcon from "./Buttons/ButtonIcon";
 import TrashIcon from "./Icons/TrashIcon";
 import MoveIcon from "./Icons/MoveIcon";
 import { Draggable } from "react-beautiful-dnd";
-import useLinks from "../../../hooks/useLinks";
+import useLinks from "../../../../../hooks/useLinks";
 import EditText from "./Edit/EditText";
 import validateTitle from "../utils/validateTitle";
 import validateUrl from "../utils/validateUrl";

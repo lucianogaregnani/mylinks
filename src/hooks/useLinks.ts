@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { addDoc, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import useAuth from "../../../hooks/useAuth";
-import { db, linksRef } from "../../../config/firebase";
-import { useAppDispatch } from "./useAppDispach";
-import { useAppSelector } from "./useAppSelector";
-import { changeLinks } from "../store/links";
-import { Link } from "../../../types/Link.type";
+import useAuth from "./useAuth";
+import { db, linksRef } from "../config/firebase";
+import { useAppDispatch } from "../pages/AdminDashboard/hooks/useAppDispach";
+import { useAppSelector } from "../pages/AdminDashboard/hooks/useAppSelector";
+import { changeLinks } from "../pages/AdminDashboard/store/links";
+import { Link } from "../types/Link.type";
 
 function useLinks() {
   const { currentUser } = useAuth();
@@ -53,8 +53,6 @@ function useLinks() {
       const linkDoc = doc(db, "link", id);
 
       const newLinks = [...links];
-
-      console.log({ newActive });
 
       newLinks.forEach((link) => {
         if (link.id === id) {

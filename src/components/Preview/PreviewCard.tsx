@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface PreviewCardProps {
   thumbnailUrl: string;
   title: string;
@@ -6,7 +8,11 @@ interface PreviewCardProps {
 
 function PreviewCard({ thumbnailUrl, title, link }: PreviewCardProps) {
   return (
-    <article className="relative bg-white gap-3 rounded-xl flex items-center h-[2.5rem] w-full p-1 border-[1px]">
+    <Link
+      to={link}
+      target="_blank"
+      className="hover:scale-95 transition-all relative bg-white gap-3 rounded-md shadow-xl flex items-center min-h-[2.5rem] w-full p-1 border-[2px] border-slate-600"
+    >
       {thumbnailUrl && (
         <img
           className="w-[1.6rem] absolute left-2 rounded-full"
@@ -15,10 +21,10 @@ function PreviewCard({ thumbnailUrl, title, link }: PreviewCardProps) {
         />
       )}
 
-      <p className="text-md font-semibold mx-auto max-w-full">
+      <p className="text-md font-semibold mx-auto max-w-[90%]">
         {title || link}
       </p>
-    </article>
+    </Link>
   );
 }
 

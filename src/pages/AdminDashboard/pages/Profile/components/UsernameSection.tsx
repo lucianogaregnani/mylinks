@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../hooks/useAppDispach";
-import useSettings from "../../../hooks/useSettings";
+import useSettings from "../../../../../hooks/useSettings";
 import { changeUsername } from "../../../store/settings";
 import PlusIcon from "../../Links/components/Icons/PlusIcon";
 import { collection, getDocs, query, where } from "firebase/firestore";

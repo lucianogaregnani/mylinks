@@ -12,7 +12,7 @@ import {
   ref,
   uploadBytes,
 } from "firebase/storage";
-import useLinks from "../../../../hooks/useLinks";
+import useLinks from "../../../../../../hooks/useLinks";
 import { useState } from "react";
 
 function EditThumbnail({

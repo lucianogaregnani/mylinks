@@ -1,16 +1,17 @@
-import useLinks from "../../../../hooks/useLinks";
+import useLinks from "../../hooks/useLinks";
 import PreviewCard from "./PreviewCard";
 
 function ListOfPreviews() {
   const { links } = useLinks();
 
   return (
-    <section className="w-full flex flex-col gap-2">
+    <section className="max-w-md w-full flex flex-col gap-2">
       {links.map(
-        ({ link, title, thumbnailUrl, isActive }) =>
+        ({ link, title, thumbnailUrl, isActive, id }) =>
           isActive &&
           title && (
             <PreviewCard
+              key={id}
               title={title}
               thumbnailUrl={thumbnailUrl}
               link={link}

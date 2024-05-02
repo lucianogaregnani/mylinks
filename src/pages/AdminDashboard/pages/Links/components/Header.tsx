@@ -1,5 +1,5 @@
 import AddHeaderButton from "./Buttons/AddHeaderButton";
-import useSettings from "../../../hooks/useSettings";
+import useSettings from "../../../../../hooks/useSettings";
 import useAuth from "../../../../../hooks/useAuth";
 
 function Header() {
