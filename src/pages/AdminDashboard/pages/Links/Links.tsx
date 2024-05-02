@@ -1,17 +1,11 @@
-import ShareMyLink from "./components/Billboard/ShareMyLink";
-import ListOfLinks from "./components/ListOfLinks";
-import AddLinkButton from "./components/Buttons/AddLinkButton";
-import Header from "./components/Header";
+import LinkSection from "./components/LinkSection";
+import PreviewSection from "./components/Preview/PreviewSection";
 
 function Links() {
   return (
-    <section className="max-w-2xl mx-auto min-h-screen flex gap-4 flex-col">
-      <ShareMyLink />
-      <div className="p-2 flex gap-4 flex-col">
-        <AddLinkButton />
-        <Header />
-        <ListOfLinks />
-      </div>
+    <section className="h-[89%] w-full flex">
+      <LinkSection />
+      <PreviewSection />
     </section>
   );
 }

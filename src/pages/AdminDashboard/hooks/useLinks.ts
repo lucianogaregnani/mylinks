@@ -168,7 +168,8 @@ function useLinks() {
       const data = await getDocs(linksRef);
 
       const filteredLinks: Link[] = data.docs.map((doc) => {
-        const { title, link, userId, thumbnailUrl } = doc.data() as Link;
+        const { title, link, userId, thumbnailUrl, isActive } =
+          doc.data() as Link;
 
         return {
           id: doc.id,
@@ -176,7 +177,7 @@ function useLinks() {
           link: link,
           userId: userId,
           thumbnailUrl: thumbnailUrl,
-          isActive: true,
+          isActive,
         };
       });
 

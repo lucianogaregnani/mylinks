@@ -4,7 +4,7 @@ import HeaderDesktop from "./HeaderDesktop";
 
 function Layout() {
   return (
-    <main className="md:px-2 md:pt-2 w-full bg-gray-300/20 min-h-screen">
+    <main className="h-screen md:pt-2 w-full bg-gray-300/20">
       <HeaderDesktop />
       <HeaderMobile />
       <Outlet />
