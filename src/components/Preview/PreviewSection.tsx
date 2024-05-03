@@ -1,3 +1,4 @@
+import { Link } from "../../types/Link.type";
 import ListOfPreviews from "./ListOfPreviews";
 
 interface PreviewProps {
@@ -5,6 +6,7 @@ interface PreviewProps {
   photoURL: string | undefined;
   username: string | undefined;
   title: string | undefined;
+  links: Link[];
 }
 
 const typeConfig = {
@@ -26,7 +28,7 @@ const typeConfig = {
   },
 };
 
-function Preview({ type, photoURL, username, title }: PreviewProps) {
+function Preview({ type, photoURL, username, title, links }: PreviewProps) {
   const { imageSize, usernameSize, titleSize, textCard, imageCard, cardSize } =
     typeConfig[type];
 
@@ -40,6 +42,7 @@ function Preview({ type, photoURL, username, title }: PreviewProps) {
       <div className={`${usernameSize} font-semibold`}>@{username}</div>
       <h4 className={`${titleSize} my-2 font-bold`}>{title}</h4>
       <ListOfPreviews
+        links={links}
         imageSize={imageCard}
         titleSize={textCard}
         cardSize={cardSize}

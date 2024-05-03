@@ -1,17 +1,17 @@
-import useLinks from "../../hooks/useLinks";
+import { Link } from "../../types/Link.type";
 import PreviewCard from "./PreviewCard";
 
 function ListOfPreviews({
   titleSize,
   imageSize,
   cardSize,
+  links,
 }: {
   titleSize: string;
   imageSize: string;
   cardSize: string;
+  links: Link[];
 }) {
-  const { links } = useLinks();
-
   return (
     <section className="max-w-md w-full flex flex-col gap-2">
       {links.map(

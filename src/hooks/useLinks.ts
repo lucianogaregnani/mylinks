@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { addDoc, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import useAuth from "./useAuth";
 import { db, linksRef } from "../config/firebase";
@@ -7,6 +7,7 @@ import { useAppDispatch } from "../pages/AdminDashboard/hooks/useAppDispach";
 import { useAppSelector } from "../pages/AdminDashboard/hooks/useAppSelector";
 import { changeLinks } from "../pages/AdminDashboard/store/links";
 import { Link } from "../types/Link.type";
+import getLinksByUserId from "../utils/getLinks";
 
 function useLinks() {
   const { currentUser } = useAuth();
@@ -17,8 +18,12 @@ function useLinks() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    getLinks().then((res) => setLinks(res || []));
-  }, []);
+    if (currentUser?.uid) {
+      getLinks().then((res) => {
+        setLinks(res || []);
+      });
+    }
+  }, [currentUser]);
 
   const setLinks = (newLinks: Link[]) => {
     dispatch(changeLinks(newLinks));
@@ -163,23 +168,8 @@ function useLinks() {
 
   const getLinks = async () => {
     try {
-      const data = await getDocs(linksRef);
-
-      const filteredLinks: Link[] = data.docs.map((doc) => {
-        const { title, link, userId, thumbnailUrl, isActive } =
-          doc.data() as Link;
-
-        return {
-          id: doc.id,
-          title: title,
-          link: link,
-          userId: userId,
-          thumbnailUrl: thumbnailUrl,
-          isActive,
-        };
-      });
-
-      return filteredLinks;
+      const linksRes = await getLinksByUserId(currentUser?.uid);
+      return linksRes;
     } catch (error) {
       setError("Error");
     }
