@@ -26,6 +26,7 @@ function ProfilePictureSection({
       setIsLoading(false);
     }
   };
+
   return (
     <article className="flex flex-col gap-5 w-full">
       <div className="border-t-2 w-full border-b-2 border-slate-800 bg-white p-3 flex justify-center rounded-2xl">

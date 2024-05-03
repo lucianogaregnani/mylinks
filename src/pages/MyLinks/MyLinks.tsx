@@ -1,39 +1,18 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useParams } from "react-router-dom";
 import Preview from "../../components/Preview/PreviewSection";
-import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../config/firebase";
-import { Setting } from "../../types/Settings.type";
+import useSettingBillboard from "./hooks/useSettingBillboard";
+import useUserPhoto from "./hooks/useUserPhoto";
 
 function MyLinks() {
   const { username } = useParams();
-  const [setting, setSetting] = useState<Setting | undefined>();
-
-  const getUserInfo = async () => {
-    const refSettings = collection(db, "setting");
-
-    const q = query(refSettings, where("username", "==", username));
-
-    const docResponse = await getDocs(q);
-
-    docResponse.forEach((doc) => {
-      setSetting({
-        id: doc.id,
-        ...doc.data(),
-      } as Setting);
-    });
-  };
-
-  useEffect(() => {
-    getUserInfo();
-  }, []);
+  const { setting } = useSettingBillboard(username);
+  const { photoURL } = useUserPhoto(setting?.userId);
 
   return (
     <main className="h-screen w-full">
       <Preview
         type="billboard"
-        photoURL="{photoURL}"
+        photoURL={photoURL}
         username={setting?.username}
         title={setting?.title}
       />

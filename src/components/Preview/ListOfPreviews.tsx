@@ -1,7 +1,15 @@
 import useLinks from "../../hooks/useLinks";
 import PreviewCard from "./PreviewCard";
 
-function ListOfPreviews() {
+function ListOfPreviews({
+  titleSize,
+  imageSize,
+  cardSize,
+}: {
+  titleSize: string;
+  imageSize: string;
+  cardSize: string;
+}) {
   const { links } = useLinks();
 
   return (
@@ -11,6 +19,9 @@ function ListOfPreviews() {
           isActive &&
           title && (
             <PreviewCard
+              titleSize={titleSize}
+              imageSize={imageSize}
+              cardSize={cardSize}
               key={id}
               title={title}
               thumbnailUrl={thumbnailUrl}
