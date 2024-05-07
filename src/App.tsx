@@ -7,7 +7,6 @@ import Links from "./pages/AdminDashboard/pages/Links/Links";
 import Appearance from "./pages/AdminDashboard/pages/Appearance/Appearance";
 import { Provider } from "react-redux";
 import { store } from "./pages/AdminDashboard/store";
-import Profile from "./pages/AdminDashboard/pages/Profile/Profile";
 import MyLinks from "./pages/MyLinks/MyLinks";
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
             <Route element={<Layout />}>
               <Route element={<Links />} path="/admin/links" />
               <Route element={<Appearance />} path="/admin/appearance" />
-              <Route element={<Profile />} path="/admin/profile" />
             </Route>
           </Route>
           <Route element={<MyLinks />} path=":username" />

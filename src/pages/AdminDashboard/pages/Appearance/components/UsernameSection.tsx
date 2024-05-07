@@ -47,8 +47,8 @@ function UsernameSection({ userId }: { userId: string | undefined }) {
   };
 
   return (
-    <article className="mb-2 w-full border-b-2 border-t-2 border-slate-800 bg-white p-3 rounded-2xl flex flex-col text-center gap-3">
-      <h3 className="text-2xl font-bold">Your username</h3>
+    <article className="mb-2 w-full bg-white p-3 rounded-2xl flex flex-col text-center gap-1">
+      <h3 className="text-md font-semibold text-left">Your username</h3>
       <div className="flex gap-2">
         <input
           type="text"
@@ -62,7 +62,7 @@ function UsernameSection({ userId }: { userId: string | undefined }) {
         <button
           onClick={handleClick}
           disabled={isLoading}
-          className={` bg-green-400 hover:bg-green-500 ${
+          className={` bg-violet-600 hover:bg-violet-400 ${
             isLoading && "bg-gray-400 hover:bg-gray-400"
           } transition-all text-white p-2 rounded-full`}
         >

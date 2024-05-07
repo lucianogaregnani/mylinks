@@ -28,23 +28,27 @@ function ProfilePictureSection({
   };
 
   return (
-    <article className="flex flex-col gap-5 w-full">
-      <div className="border-t-2 w-full border-b-2 border-slate-800 bg-white p-3 flex justify-center rounded-2xl">
-        <img
-          className="w-[13rem] h-[13rem] border-2 rounded-full cursor-pointer"
-          src={preview || currentUser?.photoURL || profileIcon}
-          alt="Profile picture"
-          onClick={() => document.getElementById("image")?.click()}
-        />
+    <article className="flex gap-4 w-full p-2">
+      <img
+        className="w-[7rem] h-[7rem] rounded-full cursor-pointer"
+        src={preview || currentUser?.photoURL || profileIcon}
+        alt="Profile picture"
+        onClick={() => document.getElementById("image")?.click()}
+      />
+      <div className="flex flex-col w-full gap-3">
+        <Button
+          onClick={handleUpload}
+          size="full"
+          color="primary"
+          disabled={isLoading || !preview}
+        >
+          Upload new picture
+        </Button>
+        <Button onClick={() => {}} size="full" color="white" disabled={false}>
+          Remove
+        </Button>
       </div>
-      <Button
-        onClick={handleUpload}
-        size="full"
-        color="secondary"
-        disabled={isLoading || !preview}
-      >
-        Upload new picture
-      </Button>
+
       <input
         type="file"
         onChange={handleChange}
