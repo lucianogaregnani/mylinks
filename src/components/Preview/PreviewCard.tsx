@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { CardStyle } from "../../types/Style.type";
 
 interface PreviewCardProps {
+  cardStyles: CardStyle;
   thumbnailUrl: string;
   title: string;
   link: string;
@@ -10,6 +12,7 @@ interface PreviewCardProps {
 }
 
 function PreviewCard({
+  cardStyles,
   thumbnailUrl,
   title,
   link,
@@ -21,7 +24,7 @@ function PreviewCard({
     <Link
       to={link}
       target="_blank"
-      className={`${cardSize} hover:scale-95 transition-all relative bg-white gap-3 rounded-md shadow-xl flex items-center w-full p-1 border-[2px] border-slate-600`}
+      className={`${cardSize} ${cardStyles.hover} ${cardStyles.shadow} ${cardStyles.bgColor} ${cardStyles.border} ${cardStyles.textColor} transition-all relative gap-3 flex items-center w-full p-1`}
     >
       {thumbnailUrl && (
         <img

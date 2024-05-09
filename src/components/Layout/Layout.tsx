@@ -24,7 +24,7 @@ function Layout() {
               photoURL={currentUser?.photoURL || ""}
               title={title}
               username={username}
-              type="preview"
+              viewType="preview"
             />
           </div>
         </section>

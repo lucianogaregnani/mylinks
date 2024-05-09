@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Setting } from "../../../types/Settings.type";
+import { Style } from "../../../types/Style.type";
 
 const initialState: Setting = {
-  type: "default",
+  type: "elegant",
   username: "",
   title: "",
   id: "",
@@ -15,7 +16,7 @@ export const settingsSlice = createSlice({
     changeSettings: (_state, action: PayloadAction<Setting>) => {
       return action.payload;
     },
-    changeType: (state, action: PayloadAction<string>) => {
+    changeType: (state, action: PayloadAction<Style>) => {
       return {
         ...state,
         type: action.payload,

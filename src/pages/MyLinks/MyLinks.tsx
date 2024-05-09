@@ -14,7 +14,7 @@ function MyLinks() {
     <main className="h-screen w-full">
       <Preview
         links={links}
-        type="billboard"
+        viewType="billboard"
         photoURL={photoURL}
         username={setting?.username}
         title={setting?.title}

@@ -1,12 +1,15 @@
 import { Link } from "../../types/Link.type";
+import { CardStyle } from "../../types/Style.type";
 import PreviewCard from "./PreviewCard";
 
 function ListOfPreviews({
+  cardStyles,
   titleSize,
   imageSize,
   cardSize,
   links,
 }: {
+  cardStyles: CardStyle;
   titleSize: string;
   imageSize: string;
   cardSize: string;
@@ -19,6 +22,7 @@ function ListOfPreviews({
           isActive &&
           title && (
             <PreviewCard
+              cardStyles={cardStyles}
               titleSize={titleSize}
               imageSize={imageSize}
               cardSize={cardSize}
