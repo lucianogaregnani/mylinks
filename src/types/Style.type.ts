@@ -1,4 +1,4 @@
-export type Style = "elegant" | "violet";
+export type Style = "elegant" | "purple" | "retro" | "modern";
 
 export interface CardStyle {
   border: string;

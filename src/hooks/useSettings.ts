@@ -19,6 +19,7 @@ import {
 } from "firebase/firestore";
 import { db, userConfigRef } from "../config/firebase";
 import { Setting } from "../types/Settings.type";
+import { Style } from "../types/Style.type";
 
 function useSettings({ userId }: { userId: string | undefined }) {
   const dispatch = useAppDispatch();
@@ -73,7 +74,7 @@ function useSettings({ userId }: { userId: string | undefined }) {
     });
   };
 
-  const setType = async (newType: string) => {
+  const setType = async (newType: Style) => {
     const settingRef = doc(db, "setting", id);
     dispatch(changeType(newType));
     await updateDoc(settingRef, {

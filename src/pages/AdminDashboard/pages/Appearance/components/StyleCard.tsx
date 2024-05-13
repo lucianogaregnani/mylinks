@@ -1,3 +1,6 @@
+import useAuth from "../../../../../hooks/useAuth";
+import useSettings from "../../../../../hooks/useSettings";
+import { Style } from "../../../../../types/Style.type";
 import Check from "./Icons/Check";
 
 function StyleCard({
@@ -6,11 +9,17 @@ function StyleCard({
   isSelected,
 }: {
   bgColor: string;
-  text: string;
+  text: Style;
   isSelected: boolean;
 }) {
+  const { currentUser } = useAuth();
+  const { setType } = useSettings({ userId: currentUser?.uid });
+
   return (
-    <div className="group cursor-pointer transition-all hover:scale-105">
+    <button
+      onClick={() => setType(text)}
+      className="group transition-all hover:scale-105"
+    >
       <p className="text-center text-sm mb-1 text-slate-600">{text}</p>
 
       <div
@@ -25,7 +34,7 @@ function StyleCard({
           className={`bg-gradient-to-b ${bgColor} w-[3rem] rounded-xl h-[3rem] border-[1px]`}
         />
       </div>
-    </div>
+    </button>
   );
 }
 
