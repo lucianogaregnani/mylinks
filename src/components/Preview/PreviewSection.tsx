@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../pages/AdminDashboard/hooks/useAppSelector";
 import { Link } from "../../types/Link.type";
+import { Style } from "../../types/Style.type";
 import { styles } from "../../utils/styles";
 import ListOfPreviews from "./ListOfPreviews";
 
@@ -9,6 +9,7 @@ interface PreviewProps {
   username: string | undefined;
   title: string | undefined;
   links: Link[];
+  type: Style
 }
 
 const typeConfig = {
@@ -30,8 +31,7 @@ const typeConfig = {
   },
 };
 
-function Preview({ viewType, photoURL, username, title, links }: PreviewProps) {
-  const { type } = useAppSelector((state) => state.settings);
+function Preview({ viewType, photoURL, username, title, links, type }: PreviewProps) {
   const { imageSize, usernameSize, titleSize, textCard, imageCard, cardSize } =
     typeConfig[viewType];
 

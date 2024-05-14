@@ -13,7 +13,7 @@ function useSettingBillboard(username: string | undefined) {
       username: "",
       title: "",
       userId: "",
-      type: "",
+      type: "elegant",
     };
     const refSettings = collection(db, "setting");
 

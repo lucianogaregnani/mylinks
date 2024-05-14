@@ -13,6 +13,7 @@ function MyLinks() {
   return (
     <main className="h-screen w-full">
       <Preview
+        type={setting?.type || "elegant"}
         links={links}
         viewType="billboard"
         photoURL={photoURL}
