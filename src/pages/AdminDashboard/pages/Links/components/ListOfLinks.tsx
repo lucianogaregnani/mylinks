@@ -1,9 +1,10 @@
 import LinkCard from "./LinkCard";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import useLinks from "../../../../../hooks/useLinks";
+import LinksLoader from "./LinksLoader";
 
 function ListOfLinks() {
-  const { links, setLinks } = useLinks();
+  const { links, setLinks, linksStatusLoading } = useLinks();
 
   const handleDragEnd = (results: DropResult) => {
     const { destination, source } = results;
@@ -18,6 +19,8 @@ function ListOfLinks() {
 
     setLinks(newLinks);
   };
+
+  if (linksStatusLoading) return <LinksLoader />;
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>

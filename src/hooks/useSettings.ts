@@ -22,7 +22,7 @@ import { Setting } from "../types/Settings.type";
 import { Style } from "../types/Style.type";
 
 function useSettings({ userId }: { userId: string | undefined }) {
-  const [settingLoadingStatus, setSettingLoadingStatus] = useState(true);
+  const [settingLoadingStatus, setSettingLoadingStatus] = useState(false);
 
   const dispatch = useAppDispatch();
   const { title, type, username, id } = useAppSelector(
@@ -34,6 +34,8 @@ function useSettings({ userId }: { userId: string | undefined }) {
       const refSettings = collection(db, "setting");
 
       const q = query(refSettings, where("userId", "==", userId));
+
+      setSettingLoadingStatus(true);
 
       const doc = await getDocs(q);
       let setting: Setting = {
@@ -67,7 +69,7 @@ function useSettings({ userId }: { userId: string | undefined }) {
   };
 
   useEffect(() => {
-    getSettings();
+    if (!username) getSettings();
   }, [userId]);
 
   const setTitle = async (newTitle: string) => {

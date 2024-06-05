@@ -16,12 +16,17 @@ function useLinks() {
   const links = useAppSelector((state) => state.links);
 
   const [error, setError] = useState("");
+  const [linksStatusLoading, setLinksStatusLoading] = useState(false);
 
   useEffect(() => {
-    if (currentUser) {
-      getLinks().then((res) => setLinks(res || []));
+    if (!links.length) {
+      setLinksStatusLoading(true);
+      getLinks().then((res) => {
+        setLinksStatusLoading(false);
+        setLinks(res || []);
+      });
     }
-  }, [currentUser]);
+  }, [currentUser?.uid]);
 
   const setLinks = (newLinks: Link[]) => {
     dispatch(changeLinks(newLinks));
@@ -184,6 +189,7 @@ function useLinks() {
     getLinks,
     deleteLink,
     error,
+    linksStatusLoading,
   };
 }
 

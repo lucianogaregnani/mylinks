@@ -53,9 +53,14 @@ function Preview({
     image: { border, shadow },
   } = styles[type];
 
-  return isLoading ? (
-    <ClimbingBoxLoader color="#393a3a" />
-  ) : (
+  if (isLoading)
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <ClimbingBoxLoader color="#393a3a" />
+      </div>
+    );
+
+  return (
     <section
       className={`overflow-y-auto ${background} p-2 flex flex-col items-center h-full w-full`}
     >

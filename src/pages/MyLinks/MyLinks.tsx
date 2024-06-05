@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Preview from "../../components/Preview/PreviewSection";
+import Preview from "../../components/Preview/Preview";
 import useSettingBillboard from "./hooks/useSettingBillboard";
 import useUserPhoto from "./hooks/useUserPhoto";
 import useUserLinks from "./hooks/useUserLinks";

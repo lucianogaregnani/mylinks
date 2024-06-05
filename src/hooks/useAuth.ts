@@ -66,7 +66,7 @@ function useAuth() {
     if (!currentUser) {
       onAuthStateChanged(auth, (user) => {
         setCurrentUser(user || undefined);
-        setAuthLoadingStatus(!user);
+        setAuthLoadingStatus(false);
       });
     }
   }, []);

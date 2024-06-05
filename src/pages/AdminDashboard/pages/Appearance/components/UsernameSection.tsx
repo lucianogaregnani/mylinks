@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../hooks/useAppDispach";
-import useSettings from "../../../../../hooks/useSettings";
-import { changeUsername } from "../../../store/settings";
 import PlusIcon from "../../Links/components/Icons/PlusIcon";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../../../config/firebase";
 import validateUsername from "../utils/validateUsername";
+import { changeUsername } from "../../../store/settings";
 
-function UsernameSection({ userId }: { userId: string | undefined }) {
-  const { username, setUsername, settingLoadingStatus } = useSettings({
-    userId,
-  });
+interface UsernameSectionProps {
+  username: string;
+  setUsername: (newUsername: string) => Promise<void>;
+  loadingStatus: boolean;
+}
+
+function UsernameSection({
+  username,
+  setUsername,
+  loadingStatus,
+}: UsernameSectionProps) {
   const dispatch = useAppDispatch();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -63,9 +69,9 @@ function UsernameSection({ userId }: { userId: string | undefined }) {
         />
         <button
           onClick={handleClick}
-          disabled={isLoading || settingLoadingStatus}
+          disabled={isLoading || loadingStatus}
           className={`${
-            !(isLoading || settingLoadingStatus)
+            !(isLoading || loadingStatus)
               ? "bg-violet-600 hover:bg-violet-400"
               : "bg-gray-400 hover:bg-gray-400"
           } transition-all text-white p-2 rounded-full`}

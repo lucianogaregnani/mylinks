@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Link } from "../../../types/Link.type";
 
-const initialState: Link[] = [];
+const initialState: Link[] | undefined = [];
 
 export const linksSlice = createSlice({
   name: "links",

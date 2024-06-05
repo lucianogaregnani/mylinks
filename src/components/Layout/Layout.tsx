@@ -1,10 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
 import HeaderMobile from "./HeaderMobile";
 import HeaderDesktop from "./HeaderDesktop";
-import Preview from "../Preview/PreviewSection";
 import useAuth from "../../hooks/useAuth";
 import useSettings from "../../hooks/useSettings";
 import useLinks from "../../hooks/useLinks";
+import { MoonLoader } from "react-spinners";
+import Preview from "../Preview/Preview";
 
 function Layout() {
   const { currentUser, authLoadingStatus } = useAuth();
@@ -14,7 +15,12 @@ function Layout() {
 
   const { links } = useLinks();
 
-  if (authLoadingStatus) return <p>Cargando...</p>;
+  if (authLoadingStatus)
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        <MoonLoader color="#393a3a" />
+      </div>
+    );
 
   if (!currentUser?.uid) return <Navigate to="/login" />;
 
