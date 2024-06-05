@@ -1,3 +1,4 @@
+import { ClimbingBoxLoader } from "react-spinners";
 import { Link } from "../../types/Link.type";
 import { Style } from "../../types/Style.type";
 import { styles } from "../../utils/styles";
@@ -9,12 +10,13 @@ interface PreviewProps {
   username: string | undefined;
   title: string | undefined;
   links: Link[];
-  type: Style
+  type: Style;
+  isLoading?: boolean;
 }
 
 const typeConfig = {
   billboard: {
-    imageSize: "w-[9rem]",
+    imageSize: "w-[9rem] h-[9rem]",
     usernameSize: "text-xl",
     titleSize: "text-3xl",
     imageCard: "w-[2.6rem]",
@@ -22,7 +24,7 @@ const typeConfig = {
     cardSize: "min-h-[3.5rem]",
   },
   preview: {
-    imageSize: "w-[5rem]",
+    imageSize: "w-[5rem] h-[5rem]",
     usernameSize: "text-sm",
     titleSize: "text-xl",
     imageCard: "w-[1.6rem]",
@@ -31,7 +33,15 @@ const typeConfig = {
   },
 };
 
-function Preview({ viewType, photoURL, username, title, links, type }: PreviewProps) {
+function Preview({
+  isLoading,
+  viewType,
+  photoURL,
+  username,
+  title,
+  links,
+  type,
+}: PreviewProps) {
   const { imageSize, usernameSize, titleSize, textCard, imageCard, cardSize } =
     typeConfig[viewType];
 
@@ -43,7 +53,9 @@ function Preview({ viewType, photoURL, username, title, links, type }: PreviewPr
     image: { border, shadow },
   } = styles[type];
 
-  return (
+  return isLoading ? (
+    <ClimbingBoxLoader color="#393a3a" />
+  ) : (
     <section
       className={`overflow-y-auto ${background} p-2 flex flex-col items-center h-full w-full`}
     >
@@ -52,6 +64,7 @@ function Preview({ viewType, photoURL, username, title, links, type }: PreviewPr
         src={photoURL}
         alt="User image"
       />
+
       <div className={`${usernameSize} ${usernameColor} font-semibold`}>
         @{username}
       </div>

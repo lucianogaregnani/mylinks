@@ -8,7 +8,9 @@ import { db } from "../../../../../config/firebase";
 import validateUsername from "../utils/validateUsername";
 
 function UsernameSection({ userId }: { userId: string | undefined }) {
-  const { username, setUsername } = useSettings({ userId });
+  const { username, setUsername, settingLoadingStatus } = useSettings({
+    userId,
+  });
   const dispatch = useAppDispatch();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -61,15 +63,17 @@ function UsernameSection({ userId }: { userId: string | undefined }) {
         />
         <button
           onClick={handleClick}
-          disabled={isLoading}
-          className={` bg-violet-600 hover:bg-violet-400 ${
-            isLoading && "bg-gray-400 hover:bg-gray-400"
+          disabled={isLoading || settingLoadingStatus}
+          className={`${
+            !(isLoading || settingLoadingStatus)
+              ? "bg-violet-600 hover:bg-violet-400"
+              : "bg-gray-400 hover:bg-gray-400"
           } transition-all text-white p-2 rounded-full`}
         >
           <PlusIcon />
         </button>
       </div>
-      {error && <span className="text-red-500">{error}</span>}
+      {error && <span className="text-red-500 text-sm">{error}</span>}
     </article>
   );
 }

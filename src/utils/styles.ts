@@ -43,7 +43,7 @@ export const styles = {
     card: {
       border:
         "rounded-full shadow-[2px_2px_0px_rgb(0,0,0)] border-black border-[1px]",
-      shadow: "shadow-xl",
+      shadow: "",
       textColor: "text-slate-600",
       bgColor: "bg-white",
       hover:

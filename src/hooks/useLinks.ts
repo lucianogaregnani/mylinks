@@ -18,10 +18,8 @@ function useLinks() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (currentUser?.uid) {
-      getLinks().then((res) => {
-        setLinks(res || []);
-      });
+    if (currentUser) {
+      getLinks().then((res) => setLinks(res || []));
     }
   }, [currentUser]);
 

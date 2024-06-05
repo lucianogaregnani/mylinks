@@ -5,12 +5,14 @@ import { storage } from "../../../config/firebase";
 
 function useUserPhoto(userId: string | undefined) {
   const [photoURL, setPhotoURL] = useState("");
+  const [userPhotoLoading, setUserPhotoLoading] = useState(true);
 
   const getUserPhotoURL = async () => {
     const imageRef = ref(storage, userId + "profile_picture.png");
     const photo = await getDownloadURL(imageRef);
 
     setPhotoURL(photo);
+    setUserPhotoLoading(false);
   };
 
   useEffect(() => {
@@ -19,7 +21,7 @@ function useUserPhoto(userId: string | undefined) {
     }
   }, [userId]);
 
-  return { photoURL };
+  return { photoURL, userPhotoLoading };
 }
 
 export default useUserPhoto;

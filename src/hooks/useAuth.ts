@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   User,
@@ -14,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 function useAuth() {
   const [currentUser, setCurrentUser] = useState<User>();
   const [error, setError] = useState("");
+  const [authLoadingStatus, setAuthLoadingStatus] = useState(true);
+
   const navigate = useNavigate();
 
   const signOutUser = async () => {
@@ -60,10 +63,23 @@ function useAuth() {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => setCurrentUser(user || undefined));
+    if (!currentUser) {
+      onAuthStateChanged(auth, (user) => {
+        setCurrentUser(user || undefined);
+        setAuthLoadingStatus(!user);
+      });
+    }
   }, []);
 
-  return { currentUser, login, signUp, signInWithProvider, signOutUser, error };
+  return {
+    currentUser,
+    login,
+    signUp,
+    signInWithProvider,
+    signOutUser,
+    error,
+    authLoadingStatus,
+  };
 }
 
 export default useAuth;

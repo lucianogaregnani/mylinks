@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import HeaderMobile from "./HeaderMobile";
 import HeaderDesktop from "./HeaderDesktop";
 import Preview from "../Preview/PreviewSection";
@@ -7,9 +7,16 @@ import useSettings from "../../hooks/useSettings";
 import useLinks from "../../hooks/useLinks";
 
 function Layout() {
-  const { currentUser } = useAuth();
-  const { title, username, type } = useSettings({ userId: currentUser?.uid });
+  const { currentUser, authLoadingStatus } = useAuth();
+  const { title, username, type, settingLoadingStatus } = useSettings({
+    userId: currentUser?.uid,
+  });
+
   const { links } = useLinks();
+
+  if (authLoadingStatus) return <p>Cargando...</p>;
+
+  if (!currentUser?.uid) return <Navigate to="/login" />;
 
   return (
     <main className="h-screen md:pt-2 w-full bg-gray-300/20">
@@ -20,6 +27,7 @@ function Layout() {
         <section className="md:border-l-[1px] md:flex items-center justify-center hidden md:w-2/4">
           <div className="flex justify-center items-center overflow-hidden border-[0.6rem] border-gray-800 rounded-3xl h-[25rem] w-[13rem]">
             <Preview
+              isLoading={settingLoadingStatus || settingLoadingStatus}
               type={type}
               links={links}
               photoURL={currentUser?.photoURL || ""}

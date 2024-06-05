@@ -6,6 +6,7 @@ import { db } from "../../../config/firebase";
 
 function useSettingBillboard(username: string | undefined) {
   const [setting, setSetting] = useState<Setting | undefined>();
+  const [settingBillboardLoading, setSettingBillboardLoading] = useState(false);
 
   const getUserInfo = async () => {
     let settingRes: Setting = {
@@ -19,6 +20,7 @@ function useSettingBillboard(username: string | undefined) {
 
     const q = query(refSettings, where("username", "==", username));
 
+    setSettingBillboardLoading(true);
     const docResponse = await getDocs(q);
 
     docResponse.forEach((doc) => {
@@ -29,13 +31,14 @@ function useSettingBillboard(username: string | undefined) {
     });
 
     setSetting(settingRes);
+    setSettingBillboardLoading(false);
   };
 
   useEffect(() => {
     getUserInfo();
   }, []);
 
-  return { setting };
+  return { setting, settingBillboardLoading };
 }
 
 export default useSettingBillboard;

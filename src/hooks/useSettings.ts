@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   changeSettings,
   changeTitle,
@@ -22,6 +22,8 @@ import { Setting } from "../types/Settings.type";
 import { Style } from "../types/Style.type";
 
 function useSettings({ userId }: { userId: string | undefined }) {
+  const [settingLoadingStatus, setSettingLoadingStatus] = useState(true);
+
   const dispatch = useAppDispatch();
   const { title, type, username, id } = useAppSelector(
     (state) => state.settings
@@ -59,6 +61,8 @@ function useSettings({ userId }: { userId: string | undefined }) {
           userId,
         });
       }
+
+      setSettingLoadingStatus(false);
     }
   };
 
@@ -90,7 +94,15 @@ function useSettings({ userId }: { userId: string | undefined }) {
     });
   };
 
-  return { setTitle, setType, setUsername, title, type, username };
+  return {
+    setTitle,
+    setType,
+    setUsername,
+    title,
+    type,
+    username,
+    settingLoadingStatus,
+  };
 }
 
 export default useSettings;
