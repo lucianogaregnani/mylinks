@@ -24,6 +24,23 @@ function ShareMyLink() {
     }, 3000);
   };
 
+  if (settingLoadingStatus)
+    return (
+      <article className="flex justify-center items-center shadow-sm md:rounded-3xl bg-[rgb(224,233,250,1)] w-full p-[1.3rem]">
+        <PulseLoader color="#393a3a" size={10} />
+      </article>
+    );
+
+  if (!username)
+    return (
+      <article className="flex flex-col justify-center items-center shadow-sm md:rounded-3xl bg-[rgb(224,233,250,1)] w-full p-[1.3rem]">
+        <p className="font-bold text-indigo-400">
+          To use MyLinks, you need a username.
+        </p>
+        <small>go to the Appearance section and create your username!</small>
+      </article>
+    );
+
   return (
     <article className="shadow-sm md:rounded-3xl bg-[rgb(224,233,250,1)] w-full p-[0.6rem]">
       <div className="flex md:flex-row items-start gap-3 w-full">
@@ -32,13 +49,9 @@ function ShareMyLink() {
           <div>
             <h3 className="flex items-center gap-1">
               <span className="font-semibold">Your MyLink is live:</span>
-              {settingLoadingStatus ? (
-                <PulseLoader color="#393a3a" size={10} />
-              ) : (
-                <Link className="underline" target="_blank" to={URL}>
-                  {URL}
-                </Link>
-              )}
+              <Link className="underline" target="_blank" to={URL}>
+                {URL}
+              </Link>
             </h3>
             <p>Share your MyLink to your socials</p>
           </div>

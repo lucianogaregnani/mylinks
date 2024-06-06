@@ -2,9 +2,8 @@ import { useState } from "react";
 import Button from "../../../../../components/Button/Button";
 import useUploadImage from "../../../hooks/useUploadImage";
 import { User, updateProfile } from "firebase/auth";
-import { storage } from "../../../../../config/firebase";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import profileIcon from "../../../../../assets/profile_icon.png";
+import uploadImage from "../../../../../utils/uploadImage";
 
 function ProfilePictureSection({
   currentUser,
@@ -17,10 +16,11 @@ function ProfilePictureSection({
   const handleUpload = async () => {
     if (thumbnail && currentUser) {
       setIsLoading(true);
-      const imageRef = ref(storage, currentUser?.uid + "profile_picture.png");
-      await uploadBytes(imageRef, thumbnail);
 
-      const photoUrl = await getDownloadURL(imageRef);
+      const photoUrl = await uploadImage({
+        thumbnail,
+        userId: currentUser.uid,
+      });
 
       await updateProfile(currentUser, { photoURL: photoUrl });
       setIsLoading(false);

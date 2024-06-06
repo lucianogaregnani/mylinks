@@ -11,6 +11,8 @@ import {
 import { useEffect, useState } from "react";
 import { auth, githubProvider, googleProvider } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
+import urlToImage from "../utils/urlToFile";
+import uploadImage from "../utils/uploadImage";
 
 function useAuth() {
   const [currentUser, setCurrentUser] = useState<User>();
@@ -44,6 +46,7 @@ function useAuth() {
   const signUp = async (email: string, password: string) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+
       navigate("/admin/links");
     } catch (error: any) {
       setError("Server error");
@@ -56,6 +59,12 @@ function useAuth() {
         await signInWithPopup(auth, googleProvider);
       } else {
         await signInWithPopup(auth, githubProvider);
+      }
+
+      if (auth.currentUser?.photoURL) {
+        const thumbnail = await urlToImage(auth.currentUser?.photoURL);
+
+        uploadImage({ thumbnail, userId: auth.currentUser.uid });
       }
     } catch (error: any) {
       setError("Server error");

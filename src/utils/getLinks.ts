@@ -3,6 +3,7 @@ import { db } from "../config/firebase";
 import { Link } from "../types/Link.type";
 
 async function getLinksByUserId(userId: string | undefined) {
+  console.log(userId);
   const linksRef = collection(db, "link");
   const q = query(linksRef, where("userId", "==", userId));
   const docs = await getDocs(q);
