@@ -3,10 +3,11 @@ import { Link } from "../../types/Link.type";
 import { Style } from "../../types/Style.type";
 import { styles } from "../../utils/styles";
 import ListOfPreviews from "./ListOfPreviews";
+import photoDefault from "../../assets/profile_icon.png";
 
 interface PreviewProps {
   viewType: "preview" | "billboard";
-  photoURL: string | undefined;
+  photoURL: string | undefined | null;
   username: string | undefined;
   title: string | undefined;
   links: Link[];
@@ -66,7 +67,7 @@ function Preview({
     >
       <img
         className={`${imageSize} ${border} ${shadow} rounded-full mt-6`}
-        src={photoURL}
+        src={photoURL || photoDefault}
         alt="User image"
       />
 

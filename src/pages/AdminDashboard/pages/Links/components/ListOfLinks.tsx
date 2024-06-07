@@ -22,6 +22,13 @@ function ListOfLinks() {
 
   if (linksStatusLoading) return <LinksLoader />;
 
+  if (links.length === 0)
+    return (
+      <p className="font-bold text-center w-full text-2xl text-slate-800">
+        There are no links to show
+      </p>
+    );
+
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="ROOT" type="group">

@@ -33,10 +33,10 @@ function Layout() {
         <section className="md:border-l-[1px] md:flex items-center justify-center hidden md:w-2/4">
           <div className="flex justify-center items-center overflow-hidden border-[0.6rem] border-gray-800 rounded-3xl h-[25rem] w-[13rem]">
             <Preview
-              isLoading={settingLoadingStatus || settingLoadingStatus}
+              isLoading={settingLoadingStatus}
               type={type}
               links={links}
-              photoURL={currentUser?.photoURL || ""}
+              photoURL={currentUser?.photoURL}
               title={title}
               username={username}
               viewType="preview"
