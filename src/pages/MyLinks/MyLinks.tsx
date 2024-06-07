@@ -27,7 +27,7 @@ function MyLinks() {
           settingBillboardLoading || userPhotoLoading || userLinksLoading
         }
         type={setting?.type || "elegant"}
-        links={links}
+        links={links.sort((l1, l2) => l1.order - l2.order)}
         viewType="billboard"
         photoURL={photoURL}
         username={setting?.username}

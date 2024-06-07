@@ -63,7 +63,7 @@ function Preview({
 
   return (
     <section
-      className={`scrollbar-none overflow-y-auto ${background} p-2 flex flex-col items-center h-screen w-full`}
+      className={`scrollbar-none overflow-scroll ${background} p-2 flex flex-col items-center h-full w-full`}
     >
       <div className="mt-4">
         <img
