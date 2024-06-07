@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import ButtonIcon from "./Buttons/ButtonIcon";
 import TrashIcon from "./Icons/TrashIcon";
 import MoveIcon from "./Icons/MoveIcon";
@@ -10,19 +11,22 @@ import validateUrl from "../utils/validateUrl";
 import EditThumbnail from "./Edit/EditThumbnail";
 import { Link } from "../../../../../types/Link.type";
 
-function LinkCard({
-  id,
-  title,
-  link,
-  isActive,
-  thumbnailUrl,
-  index,
-}: Link & { index: number }) {
+function LinkCard({ id, title, link, isActive, thumbnailUrl, order }: Link) {
   const [active, setActive] = useState(isActive);
-  const { deleteLink, updateLink, updateTitle, updateIsActive } = useLinks();
+  const { deleteLink, updateLink, updateTitle, updateIsActive, updateOrder } =
+    useLinks();
+  const [isFirstRun, setIsFirstRun] = useState(true);
+
+  useEffect(() => {
+    if (!isFirstRun) {
+      updateOrder(order, id);
+      console.log("first");
+    }
+    setIsFirstRun(false);
+  }, [order]);
 
   return (
-    <Draggable draggableId={id} index={index}>
+    <Draggable draggableId={id} index={order}>
       {(provided) => (
         <div
           {...provided.draggableProps}

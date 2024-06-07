@@ -4,5 +4,6 @@ export interface Link {
   title: string;
   link: string;
   thumbnailUrl: string;
-  isActive?: boolean;
+  isActive: boolean;
+  order: number;
 }

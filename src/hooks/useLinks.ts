@@ -23,14 +23,13 @@ function useLinks() {
     if (!links.length) {
       setLinksStatusLoading(true);
       getLinks().then((res) => {
+        setLinks(res?.sort((l1, l2) => l1.order - l2.order) || []);
         setLinksStatusLoading(false);
-        setLinks(res || []);
       });
     }
   }, [currentUser?.uid]);
 
   const setLinks = (newLinks: Link[]) => {
-    console.log(newLinks);
     dispatch(changeLinks(newLinks));
   };
 
@@ -41,42 +40,60 @@ function useLinks() {
       userId: currentUser?.uid,
       thumbnailUrl: "",
       isActive: true,
+      order: links.length,
     };
 
     try {
       const newLink = await addDoc(linksRef, data);
 
       setLinks([
+        ...links,
         {
           id: newLink.id,
           ...data,
         },
-        ...links,
       ]);
     } catch (_error) {
       setError("Error");
     }
   };
 
-  const updateIsActive = async (newActive: boolean, id: string) => {
+  const updateIsActive = async (newActive: boolean, linkId: string) => {
     try {
-      const linkDoc = doc(db, "link", id);
+      const linkDoc = doc(db, "link", linkId);
+      const linksAux = links.map((link) => ({ ...link }));
+      const linkIndex = linksAux.findIndex((link) => link.id === linkId);
+      const linkAux = linksAux[linkIndex];
 
-      const newLinks = [...links];
+      linkAux["isActive"] = newActive;
 
-      newLinks.forEach((link) => {
-        if (link.id === id) {
-          return {
-            ...link,
-            isActive: newActive,
-          };
-        }
-      });
+      linksAux[linkIndex] = linkAux;
 
-      setLinks(newLinks);
+      setLinks(linksAux);
 
       await updateDoc(linkDoc, {
         isActive: newActive,
+      });
+    } catch (_error) {
+      setError("Error");
+    }
+  };
+
+  const updateOrder = async (newOrder: number, linkId: string) => {
+    try {
+      const linkDoc = doc(db, "link", linkId);
+      const linksAux = links.map((link) => ({ ...link }));
+      const linkIndex = linksAux.findIndex((link) => link.id === linkId);
+      const linkAux = linksAux[linkIndex];
+
+      linkAux["order"] = newOrder;
+
+      linksAux[linkIndex] = linkAux;
+
+      setLinks(linksAux);
+
+      await updateDoc(linkDoc, {
+        order: newOrder,
       });
     } catch (_error) {
       setError("Error");
@@ -178,6 +195,7 @@ function useLinks() {
     updateLink,
     getLinks,
     deleteLink,
+    updateOrder,
     error,
     linksStatusLoading,
   };

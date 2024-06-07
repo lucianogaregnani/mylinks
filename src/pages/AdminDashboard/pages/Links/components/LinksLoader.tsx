@@ -1,6 +1,9 @@
 function LinksLoader() {
-  return new Array(3).fill(0).map(() => (
-    <div className="relative animate-pulse  gap-4 border-gray-200 w-full rounded-2xl h-[8.5rem] pl-[4rem] flex flex-col justify-center">
+  return new Array(3).fill(0).map((_number, index: number) => (
+    <div
+      key={index}
+      className="relative animate-pulse  gap-4 border-gray-200 w-full rounded-2xl h-[8.5rem] pl-[4rem] flex flex-col justify-center"
+    >
       <div className="absolute left-2 w-[1rem] h-[2rem] bg-gray-200 rounded-sm" />
       <div className="flex gap-2">
         <div className="bg-gray-200 animate-pulse w-[10rem] h-[1rem]" />

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "../types/Link.type";
 
 interface changeLinkProperty {

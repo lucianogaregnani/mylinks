@@ -41,7 +41,7 @@ function ListOfLinks() {
             {links.map(
               ({ id, title, link, isActive, thumbnailUrl, userId }, index) => (
                 <LinkCard
-                  index={index}
+                  order={index}
                   id={id}
                   thumbnailUrl={thumbnailUrl}
                   userId={userId}

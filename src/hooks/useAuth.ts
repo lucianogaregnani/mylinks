@@ -50,7 +50,7 @@ function useAuth() {
       navigate("/admin/links");
     } catch (error: any) {
       if (error.message === "Firebase: Error (auth/invalid-credential).") {
-        setError("The email already exist");
+        setError("The user doesn't exists");
       } else {
         setError("Server error");
       }
@@ -63,7 +63,7 @@ function useAuth() {
 
       navigate("/admin/links");
     } catch (error: any) {
-      setError("Server error");
+      setError("The email already exist");
     }
   };
 

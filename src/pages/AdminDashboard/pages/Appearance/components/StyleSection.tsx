@@ -17,6 +17,7 @@ function StyleSection({
       ) : (
         Object.keys(styles).map((style) => (
           <StyleCard
+            key={style}
             isSelected={style === type}
             text={style as Style}
             bgColor={styles[style as Style].background}

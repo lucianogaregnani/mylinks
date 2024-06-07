@@ -63,13 +63,15 @@ function Preview({
 
   return (
     <section
-      className={`overflow-y-auto ${background} p-2 flex flex-col items-center h-full w-full`}
+      className={`scrollbar-none md:overflow-y-scroll ${background} p-2 flex flex-col items-center h-full w-full`}
     >
-      <img
-        className={`${imageSize} ${border} ${shadow} rounded-full mt-6`}
-        src={photoURL || photoDefault}
-        alt="User image"
-      />
+      <div className="mt-4">
+        <img
+          className={`${imageSize} ${border} ${shadow} rounded-full`}
+          src={photoURL || photoDefault}
+          alt="User image"
+        />
+      </div>
 
       <div className={`${usernameSize} ${usernameColor} font-semibold`}>
         @{username}
