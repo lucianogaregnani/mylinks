@@ -13,6 +13,9 @@ import { auth, githubProvider, googleProvider } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import urlToImage from "../utils/urlToFile";
 import uploadImage from "../utils/uploadImage";
+import { useAppDispatch } from "../pages/AdminDashboard/hooks/useAppDispach";
+import { changeLinks } from "../pages/AdminDashboard/store/links";
+import { changeSettings } from "../pages/AdminDashboard/store/settings";
 
 function useAuth() {
   const [currentUser, setCurrentUser] = useState<User>();
@@ -21,9 +24,20 @@ function useAuth() {
 
   const navigate = useNavigate();
 
+  const dispatch = useAppDispatch();
+
   const signOutUser = async () => {
     try {
       await signOut(auth);
+      dispatch(changeLinks([]));
+      dispatch(
+        changeSettings({
+          id: "",
+          title: "",
+          username: "",
+          type: "elegant",
+        })
+      );
       navigate("/login");
     } catch (error: any) {
       setError("Server error");
