@@ -12,9 +12,7 @@ function Appearance() {
 
   return (
     <section className="overflow-y-auto mx-auto w-full md:w-2/4 p-2">
-      <h3 className="mt-2 mb-2 text-2xl font-semibold text-slate-700">
-        Profile
-      </h3>
+      <h3 className="text-2xl font-semibold text-slate-700">Profile</h3>
       <article className="bg-white w-full p-3 rounded-3xl">
         <ProfilePictureSection currentUser={currentUser} />
         <UsernameSection

@@ -28,13 +28,13 @@ function PreviewCard({
     >
       {thumbnailUrl && (
         <img
-          className={`${imageSize} rounded-full`}
+          className={`${imageSize} rounded-full  absolute`}
           src={thumbnailUrl}
           alt="Link icon"
         />
       )}
 
-      <p className={`${titleSize} text-center font-semibold w-full absolute`}>
+      <p className={`${titleSize} text-center font-semibold w-3/4 mx-auto`}>
         {title || link}
       </p>
     </Link>

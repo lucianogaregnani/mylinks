@@ -25,7 +25,7 @@ function Layout() {
   if (!currentUser?.uid) return <Navigate to="/login" />;
 
   return (
-    <main className="h-screen md:pt-2 w-full bg-gray-300/20">
+    <main className="h-screen md:pt-2 w-full">
       <HeaderDesktop />
       <HeaderMobile />
       <section className="h-[89%] w-full flex">

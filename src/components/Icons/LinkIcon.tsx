@@ -1,18 +1,12 @@
 function LinkIcon() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="w-5 h-5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z"
-      />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <g fill="currentColor">
+        <path d="M24 5.25L0 5.25V3.75L24 3.75V5.25Z"></path>
+        <path d="M24 5.3H0V3.8h24v1.5Z"></path>
+        <path d="m0 9.5.8-.8h22.4l.8.8v5l-.8.8H.9l-.8-.8v-5Zm1.5.8v3.4h21v-3.4h-21Z"></path>
+        <path d="M0 20.3h24v-1.6H0v1.6Z"></path>
+      </g>
     </svg>
   );
 }

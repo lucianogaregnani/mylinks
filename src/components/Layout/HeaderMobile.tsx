@@ -5,7 +5,7 @@ import LogoutButton from "./LogoutButton";
 
 function HeaderMobile() {
   return (
-    <header className="md:hidden sticky top-0 bg-white shadow-sm md:rounded-full flex gap-5 items-center justify-between text-sm font-semibold text-gray-600">
+    <header className="md:hidden relative bg-white shadow-sm md:rounded-full flex gap-5 items-center justify-between text-sm font-semibold text-gray-600">
       <nav className="flex flex-col gap-3 w-full pt-2">
         <div className="flex justify-between px-3">
           <Link to="/">
