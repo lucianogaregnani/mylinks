@@ -8,6 +8,7 @@ import { useAppSelector } from "../pages/AdminDashboard/hooks/useAppSelector";
 import { changeLinks } from "../pages/AdminDashboard/store/links";
 import { Link } from "../types/Link.type";
 import getLinksByUserId from "../utils/getLinks";
+import changeLinkProperty from "../utils/changeLinkProperty";
 
 function useLinks() {
   const { currentUser } = useAuth();
@@ -29,6 +30,7 @@ function useLinks() {
   }, [currentUser?.uid]);
 
   const setLinks = (newLinks: Link[]) => {
+    console.log(newLinks);
     dispatch(changeLinks(newLinks));
   };
 
@@ -81,22 +83,18 @@ function useLinks() {
     }
   };
 
-  const updateThumbnail = async (newThumbnail: string, id: string) => {
+  const updateThumbnail = async (newThumbnail: string, linkId: string) => {
+    setLinks(
+      changeLinkProperty({
+        links,
+        property: "thumbnailUrl",
+        newProperty: newThumbnail,
+        linkId,
+      })
+    );
+
     try {
-      const linkDoc = doc(db, "link", id);
-
-      const newLinks = [...links];
-
-      newLinks.forEach((link) => {
-        if (link.id === id) {
-          return {
-            ...link,
-            thumbnailUrl: newThumbnail,
-          };
-        }
-      });
-
-      setLinks(newLinks);
+      const linkDoc = doc(db, "link", linkId);
 
       await updateDoc(linkDoc, {
         thumbnailUrl: newThumbnail,
@@ -106,22 +104,18 @@ function useLinks() {
     }
   };
 
-  const updateTitle = async (newTitle: string, id: string) => {
-    const newLinks = [...links];
-
-    newLinks.forEach((link) => {
-      if (link.id === id) {
-        return {
-          ...link,
-          title: newTitle,
-        };
-      }
-    });
-
-    setLinks(newLinks);
+  const updateTitle = async (newTitle: string, linkId: string) => {
+    setLinks(
+      changeLinkProperty({
+        links,
+        property: "title",
+        newProperty: newTitle,
+        linkId,
+      })
+    );
 
     try {
-      const linkDoc = doc(db, "link", id);
+      const linkDoc = doc(db, "link", linkId);
 
       await updateDoc(linkDoc, {
         title: newTitle,
@@ -144,22 +138,18 @@ function useLinks() {
     }
   };
 
-  const updateLink = async (newLink: string, id: string) => {
+  const updateLink = async (newLink: string, linkId: string) => {
     try {
-      const newLinks = [...links];
+      setLinks(
+        changeLinkProperty({
+          links,
+          property: "link",
+          newProperty: newLink,
+          linkId,
+        })
+      );
 
-      newLinks.forEach((link) => {
-        if (link.id === id) {
-          return {
-            ...link,
-            link: newLink,
-          };
-        }
-      });
-
-      setLinks(newLinks);
-
-      const linkDoc = doc(db, "link", id);
+      const linkDoc = doc(db, "link", linkId);
 
       await updateDoc(linkDoc, {
         link: newLink,

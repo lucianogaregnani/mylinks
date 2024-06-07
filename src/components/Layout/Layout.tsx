@@ -3,9 +3,9 @@ import HeaderMobile from "./HeaderMobile";
 import HeaderDesktop from "./HeaderDesktop";
 import useAuth from "../../hooks/useAuth";
 import useSettings from "../../hooks/useSettings";
-import useLinks from "../../hooks/useLinks";
 import { MoonLoader } from "react-spinners";
 import Preview from "../Preview/Preview";
+import { useAppSelector } from "../../pages/AdminDashboard/hooks/useAppSelector";
 
 function Layout() {
   const { currentUser, authLoadingStatus } = useAuth();
@@ -13,7 +13,7 @@ function Layout() {
     userId: currentUser?.uid,
   });
 
-  const { links } = useLinks();
+  const links = useAppSelector((state) => state.links);
 
   if (authLoadingStatus)
     return (
