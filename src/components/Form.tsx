@@ -73,7 +73,7 @@ function Form({ type }: { type: "login" | "register" }) {
             <input
               type="text"
               placeholder="email"
-              className="bg-gray-100 text-md p-2 rounded-md"
+              className="bg-gray-200 text-md p-2 rounded-md"
               defaultValue=""
               autoComplete="on"
               {...register("email")}
@@ -87,7 +87,7 @@ function Form({ type }: { type: "login" | "register" }) {
               required
               type="password"
               placeholder="your password"
-              className="bg-gray-100 text-md p-2 rounded-md"
+              className="bg-gray-200 text-md p-2 rounded-md"
               defaultValue=""
               autoComplete="on"
               {...register("password")}
